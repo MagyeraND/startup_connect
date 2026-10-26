@@ -1,0 +1,7 @@
+# Temporary and scratch scripts
+scratch/
+*.pyc
+__pycache__/
+.DS_Store
+*.swp
+8000
