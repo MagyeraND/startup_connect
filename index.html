@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Connect Rwanda | Bridging Startups, Mentors & Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230a6847'/><text x='50' y='64' font-size='44' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>SC</text></svg>">
+</head>
+<body>
+
+  <!-- Rwanda Flag Accent Line -->
+  <div class="rwanda-flag-stripe"></div>
+
+  <!-- Public Header -->
+  <header class="public-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-text">Startup<span>Connect</span></div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#mission" class="nav-link">Mission</a></li>
+          <li><a href="#startups" class="nav-link">Ecosystem</a></li>
+          <li><a href="#roles" class="nav-link">How It Works</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="btn btn-light btn-sm" onclick="window.app.openWelcomeGuide()" data-tooltip="View platform quick guide">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Guide
+          </button>
+          <a href="login.html" id="landing-signin-btn" class="btn btn-outline btn-sm">Sign In</a>
+          <a href="signup.html" id="landing-signup-btn" class="btn btn-primary btn-sm">Join the Network</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container text-center flex flex-col items-center">
+      <div class="hero-kicker">
+        Accelerating Youth Employment & Innovation in Rwanda
+      </div>
+
+      <h1 class="hero-title">
+        Bridging Rwandan Startups, Mentors <br>
+        and <span class="gradient-text">Global Capital</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Empowering ambitious founders in Kigali, Musanze, Huye and across Rwanda with vetted seed capital, world-class industry mentorship, and institutional investor readiness.
+      </p>
+
+      <div class="flex gap-4 items-center flex-wrap justify-center">
+        <a href="signup.html?role=founder" class="btn btn-primary btn-lg">
+          Pitch Your Startup
+        </a>
+        <a href="directory.html" class="btn btn-outline btn-lg">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          Explore Directory
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Value Proposition -->
+  <section id="mission" class="p-8" style="background-color: var(--white); padding: 5rem 0;">
+    <div class="container">
+      <div class="text-center mb-8" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+        <span class="badge badge-primary mb-2">Our Mission</span>
+        <h2 class="text-3xl font-extrabold text-slate-900">Closing the Networking & Capital Divide</h2>
+        <p class="text-muted mt-2">
+          Rwanda has emerged as Africa's premier technology testbed. Startup Connect acts as the digital infrastructure matching high-growth ventures with strategic partners to turn bold ideas into high-impact employers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-8">
+        <!-- Card 1: For Founders (Hover highlight) -->
+        <div class="role-showcase-card founder" onclick="window.location.href='signup.html?role=founder'">
+          <div class="role-showcase-icon"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+          <h3 class="role-showcase-title">For Founders</h3>
+          <p class="role-showcase-desc">
+            Gain direct exposure to active angel syndicates and VCs. Showcase your traction, manage incoming investor pitch requests, and get paired with sector veterans.
+          </p>
+          <ul class="role-showcase-checklist">
+            <li class="flex items-center gap-2">• Structured Pitch Decks & Data Rooms</li>
+            <li class="flex items-center gap-2">• Sector-matched Mentorship in Rwanda</li>
+            <li class="flex items-center gap-2">• Direct connection tracking & status</li>
+          </ul>
+          <div class="btn btn-outline role-showcase-btn">Join as Founder &rarr;</div>
+        </div>
+
+        <!-- Card 2: For Mentors (Hover highlight) -->
+        <div class="role-showcase-card mentor" onclick="window.location.href='signup.html?role=mentor'">
+          <div class="role-showcase-icon"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg></div>
+          <h3 class="role-showcase-title">For Mentors</h3>
+          <p class="role-showcase-desc">
+            Give back to Rwanda's vibrant youth ecosystem. Guide early-stage entrepreneurs through product strategy, governance, and regulatory approvals.
+          </p>
+          <ul class="role-showcase-checklist">
+            <li class="flex items-center gap-2">• Curated, high-potential mentee requests</li>
+            <li class="flex items-center gap-2">• Flexible commitment (2 to 6 hrs/month)</li>
+            <li class="flex items-center gap-2">• Ecosystem recognition & advisory stakes</li>
+          </ul>
+          <div class="btn btn-outline role-showcase-btn">Join as Mentor &rarr;</div>
+        </div>
+
+        <!-- Card 3: For Investors (Hover highlight) -->
+        <div class="role-showcase-card investor" onclick="window.location.href='signup.html?role=investor'">
+          <div class="role-showcase-icon"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
+          <h3 class="role-showcase-title">For Investors</h3>
+          <p class="role-showcase-desc">
+            Access vetted deal flow from Rwanda and the greater East African Community (EAC). Filter by unit economics, revenue traction, and employment impact.
+          </p>
+          <ul class="role-showcase-checklist">
+            <li class="flex items-center gap-2">• Standardized traction & job creation data</li>
+            <li class="flex items-center gap-2">• One-click introduction & deck requests</li>
+            <li class="flex items-center gap-2">• Syndication with local Angel networks</li>
+          </ul>
+          <div class="btn btn-outline role-showcase-btn">Join as Investor &rarr;</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Ecosystem Preview -->
+  <section id="startups" class="p-8" style="background-color: var(--slate-50); padding: 5rem 0;">
+    <div class="container">
+      <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
+        <div>
+          <span class="badge badge-success mb-2">Rwanda Tech Roster</span>
+          <h2 class="text-3xl font-extrabold text-slate-900">Featured High-Traction Ventures</h2>
+          <p class="text-muted mt-1">Discover startups currently raising seed and growth rounds across key Rwandan sectors.</p>
+        </div>
+        <a href="directory.html" class="btn btn-outline">View Complete Directory &rarr;</a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6" id="featured-startups-grid">
+        <!-- Rendered by JS or static fallback -->
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Step By Step -->
+  <section id="roles" class="p-8" style="background-color: var(--white); padding: 5rem 0;">
+    <div class="container">
+      <div class="text-center mb-8" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+        <span class="badge badge-primary mb-2">Simple, Transparent Pipeline</span>
+        <h2 class="text-3xl font-extrabold text-slate-900">How Startup Connect Works</h2>
+        <p class="text-muted mt-2">A streamlined 3-step workflow designed to minimize friction and close rounds faster.</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-8 text-center">
+        <div class="p-4">
+          <div style="width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 2px solid var(--primary); background: transparent; color: var(--primary); font-size: 1.5rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">1</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Create & Verify Profile</h3>
+          <p class="text-sm text-slate-600">Select your persona as Founder, Mentor, or Investor. Publish pitch summaries, investment thesis, or mentorship domains.</p>
+        </div>
+
+        <div class="p-4">
+          <div style="width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 2px solid var(--secondary); background: transparent; color: var(--secondary); font-size: 1.5rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">2</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Discover & Match</h3>
+          <p class="text-sm text-slate-600">Browse verified profiles filtered by sector (AgriTech, FinTech, CleanTech), ticket size, and geographical footprint across Rwanda.</p>
+        </div>
+
+        <div class="p-4">
+          <div style="width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 2px solid var(--accent-gold); background: transparent; color: var(--accent-gold); font-size: 1.5rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">3</div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Send Pitch & Connect</h3>
+          <p class="text-sm text-slate-600">Transmit direct connection requests with customizable notes and pitch attachments. Track status from Pending to Accepted in real time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="p-8" style="background: linear-gradient(135deg, var(--slate-900) 0%, #1e293b 100%); color: var(--white); padding: 5rem 0;">
+    <div class="container text-center" style="max-width: 760px;">
+      <h2 class="text-3xl font-extrabold mb-4">Ready to fuel Rwanda's innovation future?</h2>
+      <p class="text-slate-300 text-base mb-8">
+        Join hundreds of Rwandan entrepreneurs and international backers transforming East Africa's economic trajectory.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="signup.html" class="btn btn-primary btn-lg">Get Started Free</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Public Footer -->
+  <footer class="public-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: var(--white);">
+            <div class="brand-text">Startup<span style="color: #10b981;">Connect</span></div>
+          </div>
+          <p>
+            Catalyzing the Kigali Innovation City vision by connecting high-potential youth-driven startups with seasoned mentors and visionary capital.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="directory.html" class="footer-link">Startup Directory</a></li>
+            <li><a href="directory.html?role=mentor" class="footer-link">Find Mentors</a></li>
+            <li><a href="directory.html?role=investor" class="footer-link">Investor Deal Flow</a></li>
+            <li><a href="signup.html" class="footer-link">Apply to Incubator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Dashboards</h4>
+          <ul class="footer-links">
+            <li><a href="dashboard-founder.html" class="footer-link">Founder Workspace</a></li>
+            <li><a href="dashboard-mentor.html" class="footer-link">Mentor Portal</a></li>
+            <li><a href="dashboard-investor.html" class="footer-link">Investor Syndicate</a></li>
+            <li><a href="connections.html" class="footer-link">Connections Hub</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Ecosystem Hub</h4>
+          <p class="text-xs text-slate-400 mb-2">Kigali, Rwanda</p>
+          <p class="text-xs text-slate-400">contact@startupconnect.rw</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Startup Connect Rwanda. All rights reserved.</div>
+        <div class="flex gap-4">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+  <script>
+    // Render featured startups on landing page
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("featured-startups-grid");
+      if (!container || !window.app) return;
+
+      const featured = window.app.state.startups.filter(s => s.isFeatured).slice(0, 3);
+      container.innerHTML = featured.map(s => `
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-title-area">
+              <div class="flex items-center justify-between">
+                <span class="badge badge-primary">${s.sector}</span>
+                <span class="text-xs font-semibold text-muted">${s.stage}</span>
+              </div>
+              <h3 class="profile-name mt-1">${s.name}</h3>
+              <div class="profile-subtitle">${s.location} • Founder: ${s.founderName}</div>
+            </div>
+          </div>
+          
+          <p class="profile-bio">${s.description}</p>
+          
+          <div class="profile-meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Target Round</span>
+              <span class="meta-val text-primary">${formatRwf(s.capitalSeeking)}</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Youth Jobs</span>
+              <span class="meta-val">${s.youthJobsCreated} created</span>
+            </div>
+          </div>
+
+          <div class="flex gap-2 mt-auto">
+            <a href="directory.html?q=${encodeURIComponent(s.name)}" class="btn btn-outline btn-sm flex-1">View Profile</a>
+            <a href="signup.html?role=investor" class="btn btn-primary btn-sm">Pitch Request</a>
+          </div>
+        </div>
+      `).join("");
+
+      if (window.app && window.app.currentUser) {
+        const signinBtn = document.getElementById("landing-signin-btn");
+        const signupBtn = document.getElementById("landing-signup-btn");
+        if (signinBtn) {
+          signinBtn.href = `dashboard-${window.app.currentUser.role}.html`;
+          signinBtn.textContent = "My Dashboard";
+          signinBtn.className = "btn btn-primary btn-sm";
+        }
+        if (signupBtn) {
+          signupBtn.href = "#";
+          signupBtn.textContent = "Sign Out";
+          signupBtn.className = "btn btn-outline btn-sm";
+          signupBtn.onclick = (e) => {
+            e.preventDefault();
+            window.app.logout();
+          };
+        }
+      }
+    });
+  </script>
+</body>
+</html>
