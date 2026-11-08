@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founder Dashboard | Startup Connect Rwanda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230a6847'/><text x='50' y='64' font-size='44' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>SC</text></svg>">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- App Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-text">Startup<span>Connect</span></div>
+        </a>
+      </div>
+
+      <div class="sidebar-user-card">
+        <div class="user-avatar" id="sidebar-user-avatar">JM</div>
+        <div class="user-meta">
+          <div class="user-name" id="sidebar-user-name">Jean-Luc Mugisha</div>
+          <div class="user-role-badge">Founder &bull; Kigali Fresh</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Navigation</div>
+        <a href="dashboard-founder.html" class="sidebar-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Overview & Pitch
+        </a>
+        <a href="#mentorship-section" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg> Mentorship Sessions
+        </a>
+        <a href="#investment-interests-section" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Investor Interests
+        </a>
+
+        <div class="nav-section-title">Discovery & Connections</div>
+        <a href="directory.html" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Discovery & Matching
+        </a>
+        <a href="connections.html" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg> Connection Requests
+        </a>
+
+        <div class="nav-section-title">Account</div>
+        <a href="javascript:void(0)" onclick="openEditProfileModal()" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Edit Profile
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="flex items-center justify-between">
+          <div class="text-xs text-muted">Role: <strong id="sidebar-role-label">Founder</strong></div>
+          <button onclick="window.app.logout()" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Sign Out</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Header -->
+      <header class="app-header">
+        <div class="flex items-center gap-4">
+          <button id="mobile-menu-toggle" class="btn btn-icon btn-light" style="display: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+          <div class="header-search">
+            <span class="search-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="top-search" placeholder="Search mentors, investors, sectors...">
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn btn-outline btn-sm" onclick="openEditProfileModal()" data-tooltip="Update profile details and password">
+            Edit Profile
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="openSendPitchModal()">
+            <span>+</span> Send Request
+          </button>
+          <button onclick="window.app.logout()" class="btn btn-outline btn-sm">Sign Out</button>
+        </div>
+      </header>
+
+      <!-- Dashboard Body -->
+      <div class="app-content">
+        <!-- Top Welcome Banner -->
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+          <div>
+            <h1 class="text-2xl font-extrabold text-slate-900" id="dash-greeting">Founder Command Center</h1>
+            <p class="text-sm text-muted">Manage your startup pitch, verified youth job metrics, mentorship lifecycle, and investor interest.</p>
+          </div>
+          <div class="flex gap-2 items-center flex-wrap">
+            <span class="badge badge-success">● Active Seed Round</span>
+            <span class="badge badge-region" id="dash-region-badge">Northern Province</span>
+          </div>
+        </div>
+
+        <!-- Metric Stat Cards (NFR 7 Real-time Statistics) -->
+        <div class="grid grid-cols-4 gap-4 mb-6">
+          <div class="stat-card" data-tooltip="Target capital seeking for current financing round">
+            <div class="stat-val" id="stat-target-ask">--</div>
+            <div class="stat-label">Target Seed Ask</div>
+          </div>
+
+          <div class="stat-card" data-tooltip="Verified monthly recurring revenue">
+            <div class="stat-val" id="stat-mrr">--</div>
+            <div class="stat-label">Monthly Revenue (MRR)</div>
+          </div>
+
+          <div class="stat-card" data-tooltip="Youth employment generation in Rwanda">
+            <div class="stat-val" id="stat-youth-jobs">--</div>
+            <div class="stat-label">Youth Employment Created</div>
+          </div>
+
+          <div class="stat-card" data-tooltip="Accepted networking links & active advisory relationships">
+            <div class="stat-val" id="stat-active-connections">--</div>
+            <div class="stat-label">Active Angels & Mentors</div>
+          </div>
+        </div>
+
+        <!-- Startup Pitch Overview Card -->
+        <div class="card mb-8" id="profile-pitch-card">
+          <!-- Empty State: Shown until a profile file is added -->
+          <div id="profile-empty-state" class="p-8 text-center" style="display: block;">
+            <div style="max-width: 540px; margin: 0 auto;">
+              <div style="width: 52px; height: 52px; border-radius: 50%; background: var(--slate-100); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--slate-500);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+              </div>
+              <h3 class="text-lg font-extrabold text-slate-900 mb-2">No Profile Data Loaded</h3>
+              <p class="text-sm text-muted mb-6 leading-relaxed">
+                This founder profile is currently empty. Add or upload your startup profile data file (<code style="background: var(--slate-100); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.8rem;">profile_data.json</code>, pitch deck PDF, or data file) to populate your venture metrics, elevator pitch, fundraising target, and readiness milestones.
+              </p>
+
+              <!-- File Dropzone & Selection Area -->
+              <div id="profile-dropzone" class="p-6 mb-4" style="border: 2px dashed var(--slate-300); border-radius: var(--radius-lg); background: var(--slate-50); cursor: pointer; transition: all 0.2s ease;">
+                <input type="file" id="profile-file-input" accept=".json,.pdf,.txt,.csv" style="display: none;">
+                <p class="text-xs font-semibold text-slate-600 mb-3">Drop your profile file here, or click to browse</p>
+                <div class="flex items-center justify-center gap-3 flex-wrap">
+                  <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('profile-file-input').click()">
+                    Add Profile File
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm" onclick="loadSampleProfileFile()">
+                    Load Sample Profile Data
+                  </button>
+                </div>
+                <p class="text-xs text-muted mt-3" style="font-size: 0.725rem;">
+                  Supported files: <strong class="text-slate-700">JSON</strong> (e.g. <code>profile_data.json</code>), <strong class="text-slate-700">PDF</strong> (pitch deck), or text documents.
+                </p>
+              </div>
+              
+              <div class="text-xs text-muted" style="font-size: 0.75rem;">
+                Tip: Adding a <code style="background: var(--slate-100); padding: 0.1rem 0.35rem; border-radius: 3px;">profile_data.json</code> file directly to the project root directory will also automatically populate the profile on page refresh.
+              </div>
+            </div>
+          </div>
+
+          <!-- Populated Profile State: Revealed once a profile file is added -->
+          <div id="profile-loaded-content" style="display: none;">
+            <div class="card-header" style="padding: 1.5rem 2rem;">
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h2 class="text-xl font-extrabold text-slate-900" id="display-startup-name">Kigali Fresh Logistics</h2>
+                  <span class="badge badge-primary" id="display-startup-sector">AgriTech & Cold-Chain</span>
+                  <span class="badge badge-slate" id="display-startup-stage">Seed</span>
+                </div>
+                <p class="text-xs text-muted mt-1" id="display-startup-meta">Musanze &bull; Northern Province &bull; Co-Founder: Jean-Luc Mugisha</p>
+              </div>
+              <div class="flex gap-3">
+                <button class="btn btn-outline btn-sm" onclick="alert('Pitch deck room loaded with verified metrics.');">
+                  Preview Deck
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="openEditProfileModal();">
+                  Edit Venture
+                </button>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 2rem;">
+              <!-- Elevator Pitch Highlight Box -->
+              <div class="pitch-callout-box">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Elevator Pitch & Traction</span>
+                  <span class="badge badge-success font-semibold">&bull; Verified Model</span>
+                </div>
+                <p class="pitch-callout-text" id="display-pitch-text">
+                  Kigali Fresh deploys IoT-enabled solar cold hubs in Musanze and Rubavu, connecting 1,200+ smallholder horticulture farmers directly to Kigali supermarkets and hotels. We have curtailed post-harvest food waste by 38% while boosting farmer take-home income by 22%.
+                </p>
+              </div>
+
+              <!-- 2-Column Spacious Metrics & Readiness Strip -->
+              <div class="grid grid-cols-2 gap-8 items-center mt-6 pt-6" style="border-top: 1px solid var(--slate-100);">
+                <!-- Column 1: Fundraising Progress -->
+                <div>
+                  <div class="flex items-baseline justify-between mb-2">
+                    <div>
+                      <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Fundraising Target</span>
+                      <div class="text-lg font-extrabold text-slate-900 mt-1" id="display-progress-text">
+                        $45,000 <span class="text-sm font-normal text-muted">committed of $150,000 target</span>
+                      </div>
+                    </div>
+                    <span class="badge badge-primary font-bold" id="display-progress-percentage">30% Complete</span>
+                  </div>
+                  <div style="width: 100%; height: 10px; background-color: var(--slate-100); border-radius: var(--radius-full); overflow: hidden; margin-top: 0.5rem;">
+                    <div id="display-progress-bar" style="width: 30%; height: 100%; background: linear-gradient(90deg, var(--primary) 0%, #009b77 100%);"></div>
+                  </div>
+                </div>
+
+                <!-- Column 2: Due Diligence Readiness -->
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Due Diligence Readiness</span>
+                    <span class="badge badge-success font-bold" id="display-readiness-score">Score: 92 / 100</span>
+                  </div>
+                  <div class="flex flex-wrap gap-2 mt-2" id="display-readiness-milestones">
+                    <span class="milestone-chip verified">&bull; Audited Financials</span>
+                    <span class="milestone-chip verified">&bull; RDB Registered</span>
+                    <span class="milestone-chip verified">&bull; Musanze Cold Leases</span>
+                    <span class="milestone-chip verified">&bull; BNR Sandbox Pilot</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================================
+             SRS Activity Workflow: Mentorship Scheduling & Feedback Lifecycle (Page 11)
+             ========================================================================= -->
+        <div class="card mb-6" id="mentorship-section" style="border-top: 3px solid var(--secondary);">
+          <div class="card-header">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="badge badge-secondary">Mentorship Pipeline</span>
+                <span class="text-xs text-muted">Mentorship Requests & Sessions</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mt-1">Mentorship Requests & Scheduled Sessions</h3>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="openRequestMentorshipModal()">
+              <span>+</span> Request Mentorship
+            </button>
+          </div>
+          <div class="card-body">
+            <!-- SRS Activity Diagram Swimlane: Declined with feedback -> Revision loop (Page 11) -->
+            <div id="declined-feedback-container">
+              <!-- Populated via JS if mentor declined with guidance -->
+            </div>
+
+            <!-- Proposed timeslots alert (if any mentor has proposed available times) -->
+            <div id="proposed-timeslots-container">
+              <!-- Populated via JS -->
+            </div>
+
+            <!-- Scheduled Sessions List -->
+            <h4 class="text-xs font-bold text-slate-500 uppercase mb-2">Confirmed & Completed Mentorship Sprints</h4>
+            <div id="scheduled-sessions-list" class="flex flex-col gap-3">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================================
+             SRS Investment Interest Workflow (Class Diagram Page 12, 13)
+             ========================================================================= -->
+        <div class="card mb-6" id="investment-interests-section" style="border-top: 3px solid var(--accent-gold);">
+          <div class="card-header">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="badge badge-warning">Deal Flow</span>
+                <span class="text-xs text-muted">Investment Interests Expressed by Angels & Funds</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mt-1">Recorded Investor Interest</h3>
+            </div>
+            <span class="badge badge-slate" id="total-interest-expressed-badge">$50,000 Total Expressed</span>
+          </div>
+          <div class="card-body" style="padding: 0;">
+            <table class="connection-table">
+              <thead>
+                <tr>
+                  <th>Investor / Syndicate</th>
+                  <th>Amount Expressed</th>
+                  <th>Strategic Note</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="investment-interests-table">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Active Connection Requests Pipeline (Full width, spacious & readable) -->
+        <div class="card mb-8">
+          <div class="card-header" style="padding: 1.35rem 1.75rem;">
+            <div>
+              <h3 class="text-base font-bold text-slate-900">Active Connection & Pitch Requests</h3>
+              <p class="text-xs text-muted mt-0.5">Track your direct conversations and inquiries with Rwandan mentors and angel syndicates</p>
+            </div>
+            <a href="connections.html" class="btn btn-outline btn-sm">View Full Network &rarr;</a>
+          </div>
+          <div class="card-body" style="padding: 0;">
+            <table class="connection-table">
+              <thead>
+                <tr>
+                  <th style="width: 28%;">Recipient</th>
+                  <th style="width: 36%;">Request Type & Note</th>
+                  <th style="width: 18%;">Status</th>
+                  <th style="width: 18%;">Date Sent</th>
+                </tr>
+              </thead>
+              <tbody id="founder-requests-table">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Sector-Matched Mentors & Angels (Spacious 3-column cards) -->
+        <div class="card mb-8">
+          <div class="card-header" style="padding: 1.35rem 1.75rem;">
+            <div>
+              <h3 class="text-base font-bold text-slate-900">Recommended Mentors & Angels for Your Venture</h3>
+              <p class="text-xs text-muted mt-0.5">Vetted advisors in Rwanda specializing in AgriTech, Cold-Chain logistics, and Seed fundraising</p>
+            </div>
+            <a href="directory.html" class="btn btn-light btn-sm">Explore All Directory &rarr;</a>
+          </div>
+          <div class="card-body" style="padding: 1.75rem 2rem;">
+            <div id="matching-advisors-list" class="grid grid-cols-3 gap-6">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- FR 2.2: Edit Profile Modal -->
+  <div class="modal-backdrop" id="edit-profile-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-primary mb-1">Profile Management</span>
+          <h3 class="text-lg font-bold text-slate-900">Edit Founder Profile & Password</h3>
+        </div>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('edit-profile-modal')">&times;</button>
+      </div>
+      <form id="edit-profile-form">
+        <div class="modal-body">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Full Name <span class="required">*</span></label>
+              <input type="text" id="edit-name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address <span class="required">*</span></label>
+              <input type="email" id="edit-email" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Administrative Region <span class="required">*</span></label>
+              <select id="edit-region" class="form-control form-select">
+                <option value="Kigali">Kigali</option>
+                <option value="Northern Province">Northern Province (Musanze, etc.)</option>
+                <option value="Southern Province">Southern Province (Huye, etc.)</option>
+                <option value="Western Province">Western Province (Rubavu, Rusizi)</option>
+                <option value="Eastern Province">Eastern Province (Kayonza, etc.)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Venture Stage</label>
+              <select id="edit-stage" class="form-control form-select">
+                <option value="Idea">Idea / Prototype</option>
+                <option value="Pre-seed">Pre-seed</option>
+                <option value="Seed">Seed</option>
+                <option value="Series A">Series A</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Startup Venture Name</label>
+              <input type="text" id="edit-startup-name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Target Funding Need (USD)</label>
+              <input type="number" id="edit-capital" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Bio & Primary Need</label>
+            <textarea id="edit-bio" class="form-control" rows="2" placeholder="Describe your primary mentorship or capital requirements..."></textarea>
+          </div>
+
+          <div class="p-3 mb-2" style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md);">
+            <div class="text-xs font-bold text-slate-700 mb-2">Change Password</div>
+            <div class="grid grid-cols-2 gap-3">
+              <input type="password" id="edit-new-pass" class="form-control" placeholder="New Password (min 8 chars)">
+              <input type="password" id="edit-confirm-pass" class="form-control" placeholder="Confirm Password">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeModal('edit-profile-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mentorship Request Modal (Activity Diagram Page 11: Select mentor and submit request with goals) -->
+  <div class="modal-backdrop" id="mentorship-request-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-secondary mb-1">Mentorship Request</span>
+          <h3 class="text-lg font-bold text-slate-900">Submit Mentorship Application</h3>
+        </div>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('mentorship-request-modal')">&times;</button>
+      </div>
+      <form id="mentorship-request-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Select Mentor <span class="required">*</span></label>
+            <select id="mreq-mentor-select" class="form-control form-select" required>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Mentorship Goals & Key Challenges <span class="required">*</span></label>
+            <textarea id="mreq-goals" class="form-control" rows="4" placeholder="Be specific about unit economics, BNR regulatory compliance, product growth, or scaling questions..." required></textarea>
+            <span class="form-hint">Mentors review goals before proposing their available sprint time slots.</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeModal('mentorship-request-modal')">Cancel</button>
+          <button type="submit" class="btn btn-secondary">Submit Request to Mentor &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Session Feedback & Rating Modal (Activity Diagram Page 11: Submit feedback and rating) -->
+  <div class="modal-backdrop" id="session-review-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-success mb-1">Session Review</span>
+          <h3 class="text-lg font-bold text-slate-900">Rate & Review Mentorship Session</h3>
+        </div>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('session-review-modal')">&times;</button>
+      </div>
+      <form id="session-review-form">
+        <input type="hidden" id="review-session-id">
+        <div class="modal-body">
+          <div class="p-3 mb-4" style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md);">
+            <div class="text-xs text-muted" id="review-mentor-name">Mentor: Dr. Aline Umutoni</div>
+            <div class="text-sm font-bold text-slate-900" id="review-session-time">Scheduled Sprint</div>
+          </div>
+
+          <div class="form-group text-center mb-4">
+            <label class="form-label">Session Rating <span class="required">*</span></label>
+            <div class="star-rating" id="star-rating-box">
+              <span class="star selected" data-val="1">&#9733;</span>
+              <span class="star selected" data-val="2">&#9733;</span>
+              <span class="star selected" data-val="3">&#9733;</span>
+              <span class="star selected" data-val="4">&#9733;</span>
+              <span class="star selected" data-val="5">&#9733;</span>
+            </div>
+            <input type="hidden" id="rating-val" value="5">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Key Takeaways & Session Outcome <span class="required">*</span></label>
+            <textarea id="review-outcome" class="form-control" rows="2" placeholder="Summary of decisions, revised metrics, or roadmap milestones..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Written Review for Mentor Profile</label>
+            <textarea id="review-text" class="form-control" rows="3" placeholder="Share how this mentor helped your Rwandan venture..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeModal('session-review-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Session Feedback &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SRS Activity Workflow Revision Modal (Page 11: Revise criteria or request) -->
+  <div class="modal-backdrop" id="revise-mentorship-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-warning mb-1">Mentorship Revision</span>
+          <h3 class="text-lg font-bold text-slate-900">Revise Mentorship Criteria & Goals</h3>
+        </div>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('revise-mentorship-modal')">&times;</button>
+      </div>
+      <form id="revise-mentorship-form">
+        <input type="hidden" id="revise-req-id">
+        <div class="modal-body">
+          <div class="p-3 mb-4" style="background: #fffbeb; border: 1px solid #fde68a; border-radius: var(--radius-md);">
+            <div class="text-xs font-bold text-amber-800 mb-1">Mentor's Decline Feedback:</div>
+            <div class="text-xs text-amber-900" id="revise-decline-reason">Reason provided by mentor...</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Target Mentor <span class="required">*</span></label>
+            <select id="revise-mentor-select" class="form-control form-select" required>
+              <!-- Mentors populated by JS -->
+            </select>
+            <span class="form-hint">You may keep the same mentor with updated goals or select an alternative advisor.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Revised Mentorship Goals & Specific Focus <span class="required">*</span></label>
+            <textarea id="revise-goals-text" class="form-control" rows="4" placeholder="Clarify your ask, focus area, or revised timeline based on the mentor's feedback..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeModal('revise-mentorship-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Re-Submit Revised Request &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Send Connection / Pitch Modal -->
+  <div class="modal-backdrop" id="pitch-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="text-lg font-bold text-slate-900">Send Pitch or Mentorship Request</h3>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('pitch-modal')">&times;</button>
+      </div>
+      <form id="send-pitch-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Select Recipient <span class="required">*</span></label>
+            <select id="modal-recipient" class="form-control form-select" required>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Request Type</label>
+            <select id="modal-request-type" class="form-control form-select">
+              <option value="Seed Pitch & Term Sheet Review">Seed Pitch & Term Sheet Review</option>
+              <option value="Strategic Mentorship (Supply Chain & GTM)">Strategic Mentorship (Supply Chain & GTM)</option>
+              <option value="Introductory Networking Call">Introductory Networking Call</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pitch Summary & Traction Highlights</label>
+            <textarea id="modal-pitch-summary" class="form-control" rows="3" placeholder="Highlight MRR, customer growth, or specific mentorship help required in Rwanda..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Attached Pitch Materials</label>
+            <div class="p-3 text-xs text-slate-600 flex items-center justify-between" style="background: var(--slate-100); border-radius: var(--radius-sm);">
+              <span>Kigali_Fresh_Seed_Deck_Nov2026.pdf (4.2 MB)</span>
+              <span class="text-success font-bold">Attached</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeModal('pitch-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Transmit Request &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+  <script>
+    function openSendPitchModal(preselectedRecipientId = null) {
+      const select = document.getElementById("modal-recipient");
+      select.innerHTML = "";
+      
+      const targets = [
+        ...window.app.state.investors.map(i => ({ id: i.id, name: `${i.name} (Investor - ${i.firm})`, role: "Investor" })),
+        ...window.app.state.mentors.map(m => ({ id: m.id, name: `${m.name} (Mentor - ${m.roleTitle.split('@')[0]})`, role: "Mentor" }))
+      ];
+
+      targets.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = t.name;
+        opt.dataset.role = t.role;
+        opt.dataset.name = t.name.split(" (")[0];
+        if (preselectedRecipientId && preselectedRecipientId === t.id) {
+          opt.selected = true;
+        }
+        select.appendChild(opt);
+      });
+
+      window.app.openModal("pitch-modal");
+    }
+
+    function openRequestMentorshipModal(mentorId = null) {
+      const select = document.getElementById("mreq-mentor-select");
+      select.innerHTML = "";
+      window.app.state.mentors.forEach(m => {
+        const opt = document.createElement("option");
+        opt.value = m.id;
+        opt.textContent = `${m.name} - ${m.roleTitle.split('@')[0]} (${m.region || 'Kigali'})`;
+        if (mentorId && mentorId === m.id) opt.selected = true;
+        select.appendChild(opt);
+      });
+      window.app.openModal("mentorship-request-modal");
+    }
+
+    function openReviseMentorshipModal(reqId) {
+      const req = window.app.state.mentorshipRequests.find(r => r.id === reqId);
+      if (!req) return;
+      document.getElementById("revise-req-id").value = req.id;
+      document.getElementById("revise-decline-reason").textContent = req.declineReason || "Mentor indicated capacity limit or suggested revising your pitch focus.";
+      document.getElementById("revise-goals-text").value = req.goals || "";
+
+      const select = document.getElementById("revise-mentor-select");
+      select.innerHTML = "";
+      window.app.state.mentors.forEach(m => {
+        const opt = document.createElement("option");
+        opt.value = m.id;
+        opt.textContent = `${m.name} - ${m.roleTitle.split('@')[0]} (${m.region || 'Kigali'})`;
+        if (m.id === req.mentorId) opt.selected = true;
+        select.appendChild(opt);
+      });
+
+      window.app.openModal("revise-mentorship-modal");
+    }
+
+    function openEditProfileModal() {
+      const user = window.app.currentUser;
+      document.getElementById("edit-name").value = user.name || "";
+      document.getElementById("edit-email").value = user.email || "";
+      document.getElementById("edit-region").value = user.region || "Northern Province";
+      document.getElementById("edit-stage").value = user.ventureStage || "Seed";
+      document.getElementById("edit-startup-name").value = (window.app.getStartupById(user.startupId)?.name) || "Kigali Fresh Logistics";
+      document.getElementById("edit-capital").value = (window.app.getStartupById(user.startupId)?.capitalSeeking) || 150000;
+      document.getElementById("edit-bio").value = user.bio || "";
+      window.app.openModal("edit-profile-modal");
+    }
+
+    function openReviewModal(sessionId) {
+      const sess = window.app.state.mentorshipSessions.find(s => s.id === sessionId);
+      if (!sess) return;
+      document.getElementById("review-session-id").value = sess.id;
+      document.getElementById("review-mentor-name").textContent = `Mentor: ${sess.mentorName}`;
+      document.getElementById("review-session-time").textContent = `Session conducted: ${sess.scheduledAt}`;
+      document.getElementById("review-outcome").value = sess.outcome && sess.outcome !== "Awaiting session completion" ? sess.outcome : "";
+      document.getElementById("review-text").value = sess.review || "";
+      window.app.openModal("session-review-modal");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!window.app.requireAuth("founder")) return;
+      const user = window.app.currentUser;
+
+      // Update Top banner & labels
+      if (document.getElementById("sidebar-user-avatar")) {
+        document.getElementById("sidebar-user-avatar").textContent = user.avatar || "JM";
+      }
+      if (document.getElementById("sidebar-user-name")) {
+        document.getElementById("sidebar-user-name").textContent = user.name || "Founder";
+      }
+      if (document.getElementById("dash-region-badge")) {
+        document.getElementById("dash-region-badge").textContent = `${user.region || 'Northern Province'}`;
+      }
+
+      // Sync Real-Time Stats (NFR 7)
+      const stats = window.app.getLiveStats(user);
+      if (stats && document.getElementById("sidebar-pending-badge")) {
+        document.getElementById("sidebar-pending-badge").textContent = stats.pendingRequests;
+      }
+
+      // Initialize Profile File Loading & Empty/Loaded State
+      setupProfileFileListeners();
+
+      // 1. Render Requests sent by this founder
+      const tableBody = document.getElementById("founder-requests-table");
+      const userRequests = window.app.state.connections.filter(c => c.senderId === user.id || c.recipientId === user.id);
+      
+      if (tableBody) {
+        if (userRequests.length === 0) {
+          tableBody.innerHTML = `<tr><td colspan="4" class="text-center p-6 text-muted text-xs">No connection requests sent or received yet. Browse the directory to connect with mentors and investors.</td></tr>`;
+        } else {
+          tableBody.innerHTML = userRequests.map(r => {
+            let badgeClass = "badge-warning";
+            if (r.status === "Accepted") badgeClass = "badge-success";
+            if (r.status === "Declined") badgeClass = "badge-danger";
+
+            return `
+              <tr>
+                <td>
+                  <div class="font-bold text-slate-900">${r.recipientName}</div>
+                  <div class="text-xs text-muted">${r.recipientRole}</div>
+                </td>
+                <td>
+                  <div class="font-medium text-slate-800">${r.type}</div>
+                  ${r.pitchSummary ? `<div class="text-xs text-muted mt-1" style="max-width: 480px; line-height: 1.45;">"${r.pitchSummary}"</div>` : ''}
+                </td>
+                <td><span class="badge ${badgeClass}">${r.status}</span></td>
+                <td class="text-xs text-muted">${r.dateSent}</td>
+              </tr>
+            `;
+          }).join("");
+        }
+      }
+
+      // 2. Render Mentorship Requests, Proposed Timeslots & Declined Revision Loop (SRS Activity Diagram Swimlane)
+      const declinedContainer = document.getElementById("declined-feedback-container");
+      const proposedContainer = document.getElementById("proposed-timeslots-container");
+      const activeMReqs = window.app.state.mentorshipRequests.filter(r => r.founderId === user.id);
+      const declinedReqs = activeMReqs.filter(r => r.status === "Declined");
+      const timeslotsWaiting = activeMReqs.filter(r => r.status === "Timeslots Proposed");
+
+      if (declinedContainer) {
+        if (declinedReqs.length > 0) {
+          declinedContainer.innerHTML = declinedReqs.map(r => `
+            <div class="p-4 mb-4" style="background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: var(--radius-md);">
+              <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="badge badge-warning font-bold">Application Update</span>
+                  <span class="text-xs font-bold text-amber-900">Application Declined with Feedback</span>
+                </div>
+                <span class="text-xs text-muted">Submitted ${r.submittedAt}</span>
+              </div>
+              <div class="text-sm font-bold text-slate-900 mb-1">Feedback from ${r.mentorName}:</div>
+              <p class="text-xs text-slate-700 bg-white p-2 rounded border border-amber-200 mb-3 italic">
+                "${r.declineReason || 'Capacity reached for this sprint cycle.'}"
+              </p>
+              <div class="flex items-center gap-2 flex-wrap">
+                <button class="btn btn-primary btn-sm" onclick="openReviseMentorshipModal('${r.id}')">
+                  Revise Criteria or Request &rarr;
+                </button>
+                <a href="directory.html?role=Mentors" class="btn btn-outline btn-sm">
+                  Discover Alternative Mentors
+                </a>
+              </div>
+            </div>
+          `).join("");
+        } else {
+          declinedContainer.innerHTML = "";
+        }
+      }
+
+      if (proposedContainer) {
+        if (timeslotsWaiting.length > 0) {
+          proposedContainer.innerHTML = timeslotsWaiting.map(r => `
+            <div class="p-4 mb-4" style="background: transparent; border: 1.5px solid var(--secondary); border-radius: var(--radius-md);">
+              <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
+                <div>
+                  <span class="badge badge-secondary font-bold">Action Required: Mentor Proposed Timeslots</span>
+                  <div class="text-sm font-extrabold text-slate-900 mt-1">${r.mentorName} accepted your request!</div>
+                  <div class="text-xs text-slate-600">Select one slot to confirm the session:</div>
+                </div>
+                <span class="text-xs text-muted">Submitted on ${r.submittedAt}</span>
+              </div>
+              <div class="flex flex-col gap-2 my-3">
+                ${r.proposedSlots.map((slot, idx) => `
+                  <div class="timeslot-pill ${idx === 0 ? 'selected' : ''}" data-req="${r.id}" data-slot="${slot}" onclick="selectSlotPill(this)">
+                    <span>${slot}</span>
+                    <span class="text-xs">Select Slot &bull;</span>
+                  </div>
+                `).join("")}
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="confirmSelectedSlot('${r.id}')">
+                Confirm Selected Time & Schedule Session &rarr;
+              </button>
+            </div>
+          `).join("");
+        } else {
+          proposedContainer.innerHTML = "";
+        }
+      }
+
+      // 3. Render Confirmed & Completed Mentorship Sessions
+      const sessionsList = document.getElementById("scheduled-sessions-list");
+      const sessions = window.app.state.mentorshipSessions.filter(s => s.founderId === user.id);
+
+      if (sessionsList) {
+        if (sessions.length === 0) {
+          sessionsList.innerHTML = `<div class="p-4 text-center text-xs text-muted">No scheduled sessions yet. Click "+ Request Mentorship" above to apply.</div>`;
+        } else {
+          sessionsList.innerHTML = sessions.map(s => {
+            const isCompleted = s.status === "Completed";
+            return `
+              <div class="p-3" style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md);">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                  <div class="flex items-center gap-3">
+                    <div class="user-avatar mentor" style="width: 2.25rem; height: 2.25rem; font-size: 0.85rem;">${s.mentorName.split(' ').map(n=>n[0]).join('').substring(0,2)}</div>
+                    <div>
+                      <div class="font-bold text-sm text-slate-900">${s.mentorName}</div>
+                      <div class="text-xs text-muted">Sprint Time: <strong>${s.scheduledAt}</strong></div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="badge ${isCompleted ? 'badge-success' : 'badge-info'}">${s.status}</span>
+                    ${isCompleted ? `
+                      <span class="text-xs font-bold text-slate-700">Rating: ${s.rating}/5</span>
+                      <button class="btn btn-outline btn-sm" onclick="openReviewModal('${s.id}')">Edit Review</button>
+                    ` : `
+                      <button class="btn btn-primary btn-sm" onclick="openReviewModal('${s.id}')">Submit Feedback & Rating</button>
+                    `}
+                  </div>
+                </div>
+                ${s.outcome ? `
+                  <div class="mt-2 text-xs text-slate-600 bg-white p-2 rounded border border-slate-200">
+                    <strong>Outcome:</strong> ${s.outcome}
+                  </div>
+                ` : ''}
+              </div>
+            `;
+          }).join("");
+        }
+      }
+
+      // 4. Render Investment Interests (Class Diagram Page 12, 13)
+      const interestsTable = document.getElementById("investment-interests-table");
+      const userInterests = window.app.state.investmentInterests.filter(i => i.founderId === user.id || i.startupId === user.startupId);
+
+      if (interestsTable) {
+        if (userInterests.length === 0) {
+          interestsTable.innerHTML = `<tr><td colspan="6" class="text-center p-4 text-xs text-muted">No investor interests recorded yet.</td></tr>`;
+        } else {
+          interestsTable.innerHTML = userInterests.map(i => `
+            <tr>
+              <td>
+                <div class="font-bold text-slate-900">${i.investorName}</div>
+                <div class="text-xs text-muted">${i.firm}</div>
+              </td>
+              <td><span class="font-extrabold text-primary">${formatRwf(i.amount)}</span></td>
+              <td><p class="text-xs text-slate-700" style="max-width: 280px;">"${i.note}"</p></td>
+              <td><span class="badge badge-warning">${i.status}</span></td>
+              <td class="text-xs text-muted">${i.dateSubmitted}</td>
+              <td style="text-align: right;">
+                <button class="btn btn-outline btn-sm" onclick="alert('Opened data room communication with ${i.investorName}.');">
+                  Open Thread
+                </button>
+              </td>
+            </tr>
+          `).join("");
+        }
+      }
+
+      // 5. Render Sector-Matching Mentors & Investors
+      const matchContainer = document.getElementById("matching-advisors-list");
+      if (matchContainer) {
+        const matches = [
+          {
+            id: "investor-1",
+            name: "David Kwizera",
+            role: "Investor",
+            title: "Partner, Kigali Impact Angels",
+            tag: "Ticket: $25k-$150k • AgriTech & CleanTech",
+            avatar: "DK"
+          },
+          {
+            id: "mentor-2",
+            name: "Eric Gasana",
+            role: "Mentor",
+            title: "Supply Chain Director, AgriExport",
+            tag: "AgriTech Operations & Cold-chain Logistics",
+            avatar: "EG"
+          },
+          {
+            id: "investor-2",
+            name: "Elena Visser",
+            role: "Investor",
+            title: "Director, EA Seed Horizons",
+            tag: "Ticket: $100k-$500k • Logistics & AgriTech",
+            avatar: "EV"
+          }
+        ];
+
+        matchContainer.className = "grid grid-cols-3 gap-6";
+        matchContainer.innerHTML = matches.map(m => `
+          <div class="card p-5 flex flex-col justify-between" style="background-color: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg);">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <div class="user-avatar ${m.role.toLowerCase()}" style="width: 2.75rem; height: 2.75rem; font-size: 0.95rem;">${m.avatar}</div>
+                <span class="badge ${m.role === 'Investor' ? 'badge-primary' : 'badge-secondary'}">${m.role}</span>
+              </div>
+              <div class="font-bold text-base text-slate-900">${m.name}</div>
+              <div class="text-xs text-muted mt-0.5">${m.title}</div>
+              <div class="text-xs font-semibold text-primary mt-2">${m.tag}</div>
+            </div>
+            <button class="btn btn-outline-primary btn-sm btn-block mt-4" onclick="openSendPitchModal('${m.id}')">
+              Connect &rarr;
+            </button>
+          </div>
+        `).join("");
+      }
+
+      // Star rating picker handlers
+      const stars = document.querySelectorAll("#star-rating-box .star");
+      const ratingInput = document.getElementById("rating-val");
+      stars.forEach(star => {
+        star.addEventListener("click", () => {
+          const val = Number(star.dataset.val);
+          ratingInput.value = val;
+          stars.forEach(s => {
+            if (Number(s.dataset.val) <= val) s.classList.add("selected");
+            else s.classList.remove("selected");
+          });
+        });
+      });
+
+      // Handle Edit Profile Form (FR 2.2)
+      const editForm = document.getElementById("edit-profile-form");
+      if (editForm) {
+        editForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const newPass = document.getElementById("edit-new-pass").value;
+          const confirmPass = document.getElementById("edit-confirm-pass").value;
+
+          if (newPass && newPass !== confirmPass) {
+            window.app.showToast("Passwords do not match!", "danger");
+            return;
+          }
+
+          window.app.updateUserProfile({
+            name: document.getElementById("edit-name").value,
+            email: document.getElementById("edit-email").value,
+            region: document.getElementById("edit-region").value,
+            ventureStage: document.getElementById("edit-stage").value,
+            startupName: document.getElementById("edit-startup-name").value,
+            capitalSeeking: document.getElementById("edit-capital").value,
+            bio: document.getElementById("edit-bio").value
+          });
+
+          window.app.closeModal("edit-profile-modal");
+          setTimeout(() => window.location.reload(), 400);
+        });
+      }
+
+      // Handle Mentorship Request Form
+      const mreqForm = document.getElementById("mentorship-request-form");
+      if (mreqForm) {
+        mreqForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          window.app.submitMentorshipRequest({
+            mentorId: document.getElementById("mreq-mentor-select").value,
+            goals: document.getElementById("mreq-goals").value
+          });
+          window.app.closeModal("mentorship-request-modal");
+          setTimeout(() => window.location.reload(), 400);
+        });
+      }
+
+      // Handle Mentorship Revision Form (SRS Activity Diagram Page 11)
+      const reviseForm = document.getElementById("revise-mentorship-form");
+      if (reviseForm) {
+        reviseForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const reqId = document.getElementById("revise-req-id").value;
+          const newMentorId = document.getElementById("revise-mentor-select").value;
+          const updatedGoals = document.getElementById("revise-goals-text").value;
+
+          window.app.reviseMentorshipRequest(reqId, updatedGoals, newMentorId);
+          window.app.closeModal("revise-mentorship-modal");
+          setTimeout(() => window.location.reload(), 400);
+        });
+      }
+
+      // Handle Session Review Form
+      const reviewForm = document.getElementById("session-review-form");
+      if (reviewForm) {
+        reviewForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const sessId = document.getElementById("review-session-id").value;
+          window.app.completeMentorshipSession(
+            sessId,
+            document.getElementById("review-outcome").value,
+            document.getElementById("rating-val").value,
+            document.getElementById("review-text").value
+          );
+          window.app.closeModal("session-review-modal");
+          setTimeout(() => window.location.reload(), 400);
+        });
+      }
+
+      // Handle Pitch Send Form
+      const pitchForm = document.getElementById("send-pitch-form");
+      if (pitchForm) {
+        pitchForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const select = document.getElementById("modal-recipient");
+          const selectedOption = select.options[select.selectedIndex];
+          
+          window.app.sendConnectionRequest({
+            recipientId: select.value,
+            recipientName: selectedOption.dataset.name,
+            recipientRole: selectedOption.dataset.role,
+            type: document.getElementById("modal-request-type").value,
+            pitchSummary: document.getElementById("modal-pitch-summary").value,
+            notes: "Sent from Founder Command Center"
+          });
+
+          window.app.closeModal("pitch-modal");
+          setTimeout(() => window.location.reload(), 600);
+        });
+      }
+    });
+
+    function selectSlotPill(element) {
+      document.querySelectorAll(".timeslot-pill").forEach(p => p.classList.remove("selected"));
+      element.classList.add("selected");
+    }
+
+    function confirmSelectedSlot(reqId) {
+      const selected = document.querySelector(".timeslot-pill.selected");
+      if (!selected) {
+        window.app.showToast("Please click a timeslot to select it.", "warning");
+        return;
+      }
+      const slot = selected.dataset.slot;
+      window.app.confirmMentorshipSlot(reqId, slot);
+      setTimeout(() => window.location.reload(), 400);
+    }
+
+    function renderProfileSection(profileData) {
+      const emptyState = document.getElementById("profile-empty-state");
+      const loadedContent = document.getElementById("profile-loaded-content");
+      const statTargetAsk = document.getElementById("stat-target-ask");
+      const statMrr = document.getElementById("stat-mrr");
+      const statYouthJobs = document.getElementById("stat-youth-jobs");
+      const statConnections = document.getElementById("stat-active-connections");
+
+      if (!profileData) {
+        // Empty state: No profile file loaded
+        if (emptyState) emptyState.style.display = "block";
+        if (loadedContent) loadedContent.style.display = "none";
+        const userAsk = (window.app.currentUser && window.app.currentUser.capitalSeeking) || 0;
+        if (statTargetAsk) statTargetAsk.textContent = userAsk > 0 ? formatRwf(userAsk) : "--";
+        if (statMrr) statMrr.textContent = "--";
+        if (statYouthJobs) statYouthJobs.textContent = "--";
+        if (statConnections) {
+          const stats = window.app.getLiveStats(window.app.currentUser);
+          statConnections.textContent = `${stats ? stats.totalConnections : 0} Links`;
+        }
+        return;
+      }
+
+      // Populated state: Active profile data from file
+      if (emptyState) emptyState.style.display = "none";
+      if (loadedContent) loadedContent.style.display = "block";
+
+      const filenameEl = document.getElementById("profile-active-filename");
+      if (filenameEl) filenameEl.textContent = profileData.fileName || "profile_data.json";
+
+      const sNameEl = document.getElementById("display-startup-name");
+      if (sNameEl) sNameEl.textContent = profileData.startupName || "My Venture";
+
+      const sSectorEl = document.getElementById("display-startup-sector");
+      if (sSectorEl) sSectorEl.textContent = profileData.sector || "AgriTech & Cold-Chain";
+
+      const sStageEl = document.getElementById("display-startup-stage");
+      if (sStageEl) sStageEl.textContent = profileData.stage || "Seed";
+
+      const sMetaEl = document.getElementById("display-startup-meta");
+      if (sMetaEl) {
+        const founder = profileData.founderName || (window.app.currentUser ? window.app.currentUser.name : "Jean-Luc Mugisha");
+        const loc = profileData.location || profileData.region || "Musanze, Northern Province";
+        sMetaEl.innerHTML = `${loc} &bull; Co-Founder: ${founder}`;
+      }
+
+      const pitchEl = document.getElementById("display-pitch-text");
+      if (pitchEl) pitchEl.textContent = profileData.elevatorPitch || "No elevator pitch provided in profile file.";
+
+      const targetVal = Number(profileData.targetAsk) || 150000;
+      const committedVal = Number(profileData.capitalCommitted) || 45000;
+      const progressPct = Math.min(100, Math.round((committedVal / targetVal) * 100));
+
+      const progTextEl = document.getElementById("display-progress-text");
+      if (progTextEl) {
+        progTextEl.innerHTML = `${formatRwf(committedVal)} <span class="text-sm font-normal text-muted">committed of ${formatRwf(targetVal)} target</span>`;
+      }
+
+      const progPctEl = document.getElementById("display-progress-percentage");
+      if (progPctEl) progPctEl.textContent = `${progressPct}% Complete`;
+
+      const progBarEl = document.getElementById("display-progress-bar");
+      if (progBarEl) progBarEl.style.width = `${progressPct}%`;
+
+      const scoreEl = document.getElementById("display-readiness-score");
+      if (scoreEl) scoreEl.textContent = `Score: ${profileData.readinessScore || 92} / 100`;
+
+      const milestonesEl = document.getElementById("display-readiness-milestones");
+      if (milestonesEl) {
+        const list = Array.isArray(profileData.readinessMilestones) ? profileData.readinessMilestones : [
+          "Audited Financials", "RDB Registered", "Musanze Cold Leases", "BNR Sandbox Pilot"
+        ];
+        milestonesEl.innerHTML = list.map(m => `<span class="milestone-chip verified">&bull; ${m}</span>`).join("");
+      }
+
+      // Populate 4 Stat Cards
+      if (statTargetAsk) statTargetAsk.textContent = formatRwf(targetVal);
+      if (statMrr) statMrr.textContent = formatRwf(profileData.monthlyRevenue || 18500);
+      if (statYouthJobs) statYouthJobs.textContent = `${profileData.youthJobs || 42} Jobs`;
+      if (statConnections) {
+        const stats = window.app.getLiveStats(window.app.currentUser);
+        statConnections.textContent = `${profileData.activeConnections || (stats ? stats.totalConnections : 3)} Links`;
+      }
+    }
+
+    function loadSampleProfileFile() {
+      const sample = window.app.getDefaultSampleProfile();
+      window.app.setProfileFileData(sample);
+      window.app.showToast("Loaded sample profile data file!", "success");
+      renderProfileSection(sample);
+    }
+
+    function clearProfileFileData() {
+      window.app.clearProfileFileData();
+      renderProfileSection(null);
+    }
+
+    function setupProfileFileListeners() {
+      // 1. Initial Profile State Render
+      const existing = window.app.getProfileFileData();
+      if (existing) {
+        renderProfileSection(existing);
+      } else {
+        renderProfileSection(null);
+        // Only auto-check project profile file for demo founder
+        if (window.app.currentUser && window.app.currentUser.id === "founder-1") {
+          window.app.checkProjectProfileFile().then((fileData) => {
+            if (fileData) {
+              renderProfileSection(fileData);
+            }
+          });
+        }
+      }
+
+      // 2. File inputs
+      const fileInput = document.getElementById("profile-file-input");
+      if (fileInput) {
+        fileInput.addEventListener("change", (e) => {
+          if (e.target.files && e.target.files.length > 0) {
+            window.app.handleProfileFileUpload(e.target.files[0], (data) => {
+              renderProfileSection(data);
+            });
+          }
+        });
+      }
+
+      const fileInputChange = document.getElementById("profile-file-input-change");
+      if (fileInputChange) {
+        fileInputChange.addEventListener("change", (e) => {
+          if (e.target.files && e.target.files.length > 0) {
+            window.app.handleProfileFileUpload(e.target.files[0], (data) => {
+              renderProfileSection(data);
+            });
+          }
+        });
+      }
+
+      // 3. Dropzone
+      const dropzone = document.getElementById("profile-dropzone");
+      if (dropzone) {
+        dropzone.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          dropzone.style.borderColor = "var(--primary)";
+          dropzone.style.backgroundColor = "rgba(10, 104, 71, 0.05)";
+        });
+        dropzone.addEventListener("dragleave", (e) => {
+          e.preventDefault();
+          dropzone.style.borderColor = "var(--slate-300)";
+          dropzone.style.backgroundColor = "var(--slate-50)";
+        });
+        dropzone.addEventListener("drop", (e) => {
+          e.preventDefault();
+          dropzone.style.borderColor = "var(--slate-300)";
+          dropzone.style.backgroundColor = "var(--slate-50)";
+          if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            window.app.handleProfileFileUpload(e.dataTransfer.files[0], (data) => {
+              renderProfileSection(data);
+            });
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
