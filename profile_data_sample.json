@@ -1,0 +1,22 @@
+{
+  "startupName": "Kigali Fresh Logistics",
+  "sector": "AgriTech & Cold-Chain",
+  "stage": "Seed",
+  "region": "Northern Province",
+  "location": "Musanze, Northern Province",
+  "founderName": "Jean-Luc Mugisha",
+  "targetAsk": 150000,
+  "monthlyRevenue": 18500,
+  "youthJobs": 42,
+  "activeConnections": 3,
+  "elevatorPitch": "Kigali Fresh deploys IoT-enabled solar cold hubs in Musanze and Rubavu, connecting 1,200+ smallholder horticulture farmers directly to Kigali supermarkets and hotels. We have curtailed post-harvest food waste by 38% while boosting farmer take-home income by 22%.",
+  "capitalCommitted": 45000,
+  "readinessScore": 92,
+  "readinessMilestones": [
+    "Audited Financials",
+    "RDB Registered",
+    "Musanze Cold Leases",
+    "BNR Sandbox Pilot"
+  ],
+  "fileName": "profile_data_sample.json"
+}
