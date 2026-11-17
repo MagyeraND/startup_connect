@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Startup Connect Rwanda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230a6847'/><text x='50' y='64' font-size='44' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>SC</text></svg>">
+</head>
+<body style="background-color: var(--slate-100); justify-content: center; align-items: center; padding: 2.5rem 1rem;">
+
+  <div class="card" style="width: 100%; max-width: 520px; box-shadow: var(--shadow-xl); border-radius: var(--radius-xl);">
+    
+    <div class="p-6 text-center" style="border-bottom: 1px solid var(--slate-100);">
+      <a href="index.html" class="brand-logo justify-center mb-2">
+        <div class="brand-text">Startup<span>Connect</span></div>
+      </a>
+      <h2 class="text-2xl font-extrabold text-slate-900">Sign in to your account</h2>
+      <p class="text-sm text-muted">Access your startup workspace, mentorship pipeline, or deal flow.</p>
+    </div>
+
+    <div class="p-8">
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="name@domain.rw" required>
+        </div>
+
+        <div class="form-group">
+          <div class="flex items-center justify-between mb-1">
+            <label class="form-label" for="login-password" style="margin-bottom: 0;">Password</label>
+            <a href="#" class="text-xs font-semibold text-primary" onclick="alert('Password reset instructions sent to your email.'); return false;">Forgot password?</a>
+          </div>
+          <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
+        </div>
+
+        <div class="form-group flex items-center justify-between mb-6">
+          <label class="flex items-center gap-2 text-xs text-slate-600" style="cursor: pointer;">
+            <input type="checkbox" checked>
+            Remember this session
+          </label>
+          <span class="text-xs text-muted">Kigali, GMT+2</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg mb-4">
+          Sign In to Dashboard &rarr;
+        </button>
+
+        <div class="text-center text-sm text-slate-600">
+          New to the Rwandan startup ecosystem? <a href="signup.html" class="font-bold text-primary">Join now</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("login-form");
+      const emailInput = document.getElementById("login-email");
+      const passwordInput = document.getElementById("login-password");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        const user = window.app.login(email, password);
+        if (user) {
+          window.app.showToast(`Signed in as ${user.name} (${user.role.toUpperCase()})`, "success");
+          setTimeout(() => {
+            window.location.href = `dashboard-${user.role}.html`;
+          }, 400);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

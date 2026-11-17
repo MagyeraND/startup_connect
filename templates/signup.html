@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Startup Connect Rwanda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230a6847'/><text x='50' y='64' font-size='44' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>SC</text></svg>">
+</head>
+<body style="background-color: var(--slate-100); justify-content: center; align-items: center; padding: 2.5rem 1rem;">
+
+  <div class="card" style="width: 100%; max-width: 680px; box-shadow: var(--shadow-xl); border-radius: var(--radius-xl);">
+    
+    <!-- Top Branding Header -->
+    <div class="p-6 text-center" style="border-bottom: 1px solid var(--slate-100);">
+      <a href="index.html" class="brand-logo justify-center mb-2">
+        <div class="brand-text">Startup<span>Connect</span></div>
+      </a>
+      <h2 class="text-2xl font-extrabold text-slate-900">Create Your Rwanda Network Account</h2>
+      <p class="text-sm text-muted">Join the fastest growing founder, mentor, and investor network in East Africa.</p>
+    </div>
+
+    <div class="p-8">
+      <form id="signup-form">
+        <!-- Step 1: Role Selection Cards -->
+        <label class="form-label" style="font-size: 0.95rem; margin-bottom: 0.75rem;">
+          Select your primary ecosystem role <span class="required">*</span>
+        </label>
+        
+        <div class="role-picker">
+          <div class="role-card active" data-role="founder">
+            <div class="role-card-icon"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div>
+            <div class="role-card-title">Founder</div>
+            <div class="role-card-desc">Seeking capital, advice & market traction in Rwanda</div>
+          </div>
+
+          <div class="role-card" data-role="mentor">
+            <div class="role-card-icon"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg></div>
+            <div class="role-card-title">Mentor</div>
+            <div class="role-card-desc">Offering strategic guidance & domain expertise</div>
+          </div>
+
+          <div class="role-card" data-role="investor">
+            <div class="role-card-icon"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
+            <div class="role-card-title">Investor</div>
+            <div class="role-card-desc">Vetting early-stage deals & deploying capital</div>
+          </div>
+        </div>
+
+        <input type="hidden" id="selected-role" name="role" value="founder">
+
+        <!-- Step 2: Common Personal Credentials -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="form-group">
+            <label class="form-label" for="full-name">Full Name <span class="required">*</span></label>
+            <input type="text" id="full-name" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Work / Official Email <span class="required">*</span></label>
+            <input type="email" id="email" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4">
+          <div class="form-group">
+            <label class="form-label" for="password">Password <span class="required">*</span></label>
+            <input type="password" id="password" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="phone" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="signup-region">Rwandan Region <span class="required">*</span></label>
+            <select id="signup-region" class="form-control form-select">
+              <option value="Kigali">Kigali</option>
+              <option value="Northern Province">Northern Province (Musanze, etc.)</option>
+              <option value="Southern Province">Southern Province (Huye, etc.)</option>
+              <option value="Western Province">Western Province (Rubavu, Rusizi)</option>
+              <option value="Eastern Province">Eastern Province (Kayonza, etc.)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Step 3: Role-Adaptive Fields -->
+        
+        <!-- Founder Fields -->
+        <div id="fields-founder" class="role-adaptive-group p-4 mb-4" style="background-color: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md);">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="badge badge-primary">Founder Details</span>
+            <span class="text-xs text-muted">Tell investors and mentors about your venture</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Startup Venture Name <span class="required">*</span></label>
+              <input type="text" id="founder-startup-name" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Sector / Domain <span class="required">*</span></label>
+              <select id="founder-sector" class="form-control form-select">
+                <option value="AgriTech">AgriTech & Food Security</option>
+                <option value="FinTech">FinTech & Payments</option>
+                <option value="CleanTech">CleanTech & Energy</option>
+                <option value="HealthTech">HealthTech & Bio</option>
+                <option value="EdTech">EdTech & Upskilling</option>
+                <option value="Mobility">Mobility & Smart Cities</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Maturity Stage</label>
+              <select id="founder-stage" class="form-control form-select">
+                <option value="Idea">Idea / Prototype</option>
+                <option value="Pre-seed">Pre-seed / MVP Live</option>
+                <option value="Seed" selected>Seed (Early Revenue)</option>
+                <option value="Series A">Series A</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Target Funding Ask (USD)</label>
+              <input type="number" id="founder-capital" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Elevator Pitch Summary</label>
+            <textarea id="founder-pitch" class="form-control" rows="2"></textarea>
+          </div>
+        </div>
+
+        <!-- Mentor Fields -->
+        <div id="fields-mentor" class="role-adaptive-group p-4 mb-4" style="background-color: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); display: none;">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="badge badge-secondary">Mentor Profile</span>
+            <span class="text-xs text-muted">Help founders identify where you can provide strategic value</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Current Organization & Title</label>
+              <input type="text" id="mentor-title" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Monthly Availability</label>
+              <select id="mentor-availability" class="form-control form-select">
+                <option value="2 hrs/month">2 hours / month</option>
+                <option value="4 hrs/month" selected>4 hours / month</option>
+                <option value="6+ hrs/month">6+ hours / month</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Primary Areas of Mentorship</label>
+            <input type="text" id="mentor-expertise" class="form-control">
+            <span class="form-hint">Separate topics with commas</span>
+          </div>
+        </div>
+
+        <!-- Investor Fields -->
+        <div id="fields-investor" class="role-adaptive-group p-4 mb-4" style="background-color: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); display: none;">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="badge badge-slate">Investor / Syndicate Profile</span>
+            <span class="text-xs text-muted">Specify your check size and thesis for Rwandan ventures</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Syndicate / Fund Name</label>
+              <input type="text" id="investor-firm" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Typical Check Size (USD)</label>
+              <select id="investor-ticket" class="form-control form-select">
+                <option value="$10k - $25k">$10k - $25k (Micro Angel)</option>
+                <option value="$25k - $100k" selected>$25k - $100k (Angel / Syndicate)</option>
+                <option value="$100k - $500k">$100k - $500k (Institutional Seed)</option>
+                <option value="$500k+">$500k+ (Series A / Growth)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Sectors of Interest</label>
+            <input type="text" id="investor-sectors" class="form-control">
+          </div>
+        </div>
+
+        <!-- Terms Agreement -->
+        <div class="form-group flex items-start gap-2 mb-6">
+          <input type="checkbox" id="terms" required style="margin-top: 4px;">
+          <label for="terms" class="text-xs text-slate-600">
+            I agree to the <a href="#">Terms of Use</a> and acknowledge Startup Connect's commitment to youth economic empowerment and data protection under Rwanda's Law N° 058/2021.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg mb-4">
+          Complete Registration &rarr;
+        </button>
+
+        <div class="text-center text-sm text-slate-600">
+          Already registered on the platform? <a href="login.html" class="font-bold text-primary">Log in here</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const roleCards = document.querySelectorAll(".role-card");
+      const roleInput = document.getElementById("selected-role");
+      const founderGroup = document.getElementById("fields-founder");
+      const mentorGroup = document.getElementById("fields-mentor");
+      const investorGroup = document.getElementById("fields-investor");
+
+      // Check query param for default role
+      const params = new URLSearchParams(window.location.search);
+      const initialRole = params.get("role") || "founder";
+
+      function activateRole(role) {
+        roleCards.forEach(c => {
+          if (c.dataset.role === role) {
+            c.classList.add("active");
+          } else {
+            c.classList.remove("active");
+          }
+        });
+        roleInput.value = role;
+
+        founderGroup.style.display = role === "founder" ? "block" : "none";
+        mentorGroup.style.display = role === "mentor" ? "block" : "none";
+        investorGroup.style.display = role === "investor" ? "block" : "none";
+      }
+
+      roleCards.forEach(card => {
+        card.addEventListener("click", () => activateRole(card.dataset.role));
+      });
+
+      activateRole(initialRole);
+
+      // Handle Submit
+      const form = document.getElementById("signup-form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const role = roleInput.value;
+        const name = document.getElementById("full-name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        // Create new user session
+        const mentorExpertiseVal = document.getElementById("mentor-expertise") ? document.getElementById("mentor-expertise").value : "";
+        const investorSectorsVal = document.getElementById("investor-sectors") ? document.getElementById("investor-sectors").value : "";
+
+        const newUser = {
+          id: role + "-" + Date.now(),
+          name: name,
+          email: email,
+          password: password,
+          role: role,
+          region: document.getElementById("signup-region").value,
+          title: role === "founder" ? (document.getElementById("founder-startup-name").value || "Founder") : (role === "mentor" ? (document.getElementById("mentor-title").value || "Mentor Advisor") : (document.getElementById("investor-firm").value || "Angel Investor")),
+          avatar: name.split(" ").map(n => n[0]).join("").toUpperCase().substring(0, 2),
+          phone: document.getElementById("phone").value,
+          startupName: role === "founder" ? document.getElementById("founder-startup-name").value : "",
+          sector: role === "founder" ? document.getElementById("founder-sector").value : "",
+          stage: role === "founder" ? document.getElementById("founder-stage").value : "",
+          capitalSeeking: role === "founder" ? Number(document.getElementById("founder-capital").value || 0) : 0,
+          pitchSummary: role === "founder" ? document.getElementById("founder-pitch").value : "",
+          availability: role === "mentor" && document.getElementById("mentor-availability") ? document.getElementById("mentor-availability").value : "4 hrs/month",
+          expertise: role === "mentor" && mentorExpertiseVal ? mentorExpertiseVal.split(",").map(s => s.trim()).filter(Boolean) : ["Strategy", "Go-To-Market", "Scale"],
+          firm: role === "investor" && document.getElementById("investor-firm") ? document.getElementById("investor-firm").value : "",
+          ticket: role === "investor" && document.getElementById("investor-ticket") ? document.getElementById("investor-ticket").value : "$25k - $100k",
+          sectors: role === "investor" && investorSectorsVal ? investorSectorsVal.split(",").map(s => s.trim()).filter(Boolean) : ["AgriTech", "FinTech", "CleanTech"]
+        };
+
+        window.app.registerUser(newUser);
+        window.app.showToast(`Welcome to Startup Connect Rwanda, ${name}!`, "success");
+
+        // Redirect to appropriate role dashboard
+        setTimeout(() => {
+          window.location.href = `dashboard-${role}.html`;
+        }, 600);
+      });
+    });
+  </script>
+</body>
+</html>
