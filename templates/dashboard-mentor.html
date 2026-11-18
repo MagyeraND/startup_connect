@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentor Portal | Startup Connect Rwanda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230a6847'/><text x='50' y='64' font-size='44' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>SC</text></svg>">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-text">Startup<span>Connect</span></div>
+        </a>
+      </div>
+
+      <div class="sidebar-user-card">
+        <div class="user-avatar mentor" id="sidebar-mentor-avatar">AU</div>
+        <div class="user-meta">
+          <div class="user-name" id="sidebar-mentor-name">Dr. Aline Umutoni</div>
+          <div class="user-role-badge" style="color: var(--secondary);">Mentor &bull; Product & FinTech</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Mentorship Workspace</div>
+        <a href="dashboard-mentor.html" class="sidebar-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg> Mentor Overview
+        </a>
+        <a href="#mreq-section" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> Incoming Applications
+        </a>
+        <a href="#sessions-section" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> Scheduled Sprints
+        </a>
+        <div class="nav-section-title">Discovery & Connections</div>
+        <a href="directory.html" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Browse Startups
+        </a>
+        <a href="connections.html" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg> Connection Requests
+        </a>
+
+        <div class="nav-section-title">Advisory Tools</div>
+        <a href="javascript:void(0)" onclick="openEditMentorProfileModal()" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Edit Profile
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="flex items-center justify-between">
+          <div class="text-xs text-muted">Role: <strong id="sidebar-role-label">Mentor</strong></div>
+          <button onclick="window.app.logout()" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Sign Out</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <header class="app-header">
+        <div class="flex items-center gap-4">
+          <button id="mobile-menu-toggle" class="btn btn-icon btn-light" style="display: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+          <div class="header-search">
+            <span class="search-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" placeholder="Search mentees, sectors, frameworks...">
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn btn-outline btn-sm" onclick="openEditMentorProfileModal()" data-tooltip="Update expertise and availability">
+            Edit Profile
+          </button>
+          <button class="btn btn-outline-primary btn-sm" id="availability-pill" onclick="alert('Office hours availability confirmed: 4 hrs/month');">
+            4 hrs/month Available
+          </button>
+          <button onclick="window.app.logout()" class="btn btn-outline btn-sm">Sign Out</button>
+        </div>
+      </header>
+
+      <div class="app-content">
+        <!-- Top Banner -->
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+          <div>
+            <h1 class="text-2xl font-extrabold text-slate-900">Mentor Advisory Portal</h1>
+            <p class="text-sm text-muted">Review mentorship applications, propose available time slots, guide Rwandan founders, and schedule 1-on-1 strategy sprints.</p>
+          </div>
+          <div class="flex gap-2 items-center flex-wrap">
+            <span class="badge badge-secondary">&bull; Certified Senior Advisor</span>
+            <span class="badge badge-region" id="mentor-region-badge">Kigali</span>
+            <span class="badge badge-success">5.0 Star Rating</span>
+          </div>
+        </div>
+
+        <!-- Mentorship Impact Metrics (NFR 7 Real-time Statistics) -->
+        <div class="grid grid-cols-4 gap-4 mb-6">
+          <div class="stat-card" data-tooltip="Verified hours of advisory given to Rwandan startups">
+            <div class="stat-val" id="stat-mentor-hours">140 Hrs</div>
+            <div class="stat-label">Total Mentoring Delivered</div>
+          </div>
+
+          <div class="stat-card" data-tooltip="Active founder teams currently guided">
+            <div class="stat-val" id="stat-mentor-teams">6 Teams</div>
+            <div class="stat-label">Active Founders Guided</div>
+          </div>
+
+          <div class="stat-card" data-tooltip="Total seed & series A capital raised by mentored founders">
+            <div class="stat-val" id="stat-mentor-capital">$2.4M</div>
+            <div class="stat-label">Capital Raised by Mentees</div>
+          </div>
+
+          <div class="stat-card" data-tooltip="Mentorship applications awaiting your availability proposal">
+            <div class="stat-val" id="stat-pending-mentorship">2 Pending</div>
+            <div class="stat-label">Awaiting Your Action</div>
+          </div>
+        </div>
+
+        <!-- Profile & Expertise Overview Banner -->
+        <div class="card mb-6">
+          <div class="card-body">
+            <div class="flex items-start justify-between flex-wrap gap-4">
+              <div>
+                <h3 class="text-lg font-bold text-slate-900" id="display-mentor-name">Dr. Aline Umutoni</h3>
+                <p class="text-sm text-muted mt-1 max-width-600" id="display-mentor-bio">
+                  Former VP of Product @ Pan-African FinTech &bull; Kigali Senior Advisor. Helping Rwandan founders navigate regulatory frameworks, product market fit, and scalable banking APIs.
+                </p>
+                <div class="flex items-center gap-2 mt-3 flex-wrap" id="display-mentor-tags">
+                  <span class="tag">Product Strategy</span>
+                  <span class="tag">FinTech Regulation</span>
+                  <span class="tag">Go-To-Market</span>
+                  <span class="tag">BNR Sandbox Compliance</span>
+                  <span class="tag">Cross-Border EAC Payments</span>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm" onclick="openEditMentorProfileModal()">Edit Advisory Profile</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================================
+             SRS Mentorship Applications Swimlane (Page 11: Review & Propose Times)
+             ========================================================================= -->
+        <div class="card mb-6" id="mreq-section" style="border-top: 3px solid var(--secondary);">
+          <div class="card-header">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="badge badge-secondary">Mentorship Pipeline</span>
+                <span class="text-xs text-muted">Incoming Applications</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mt-1">Incoming Founder Mentorship Applications</h3>
+            </div>
+            <span class="badge badge-warning" id="incoming-count-badge">Action Required</span>
+          </div>
+          
+          <div class="card-body" id="incoming-mreq-list" style="display: flex; flex-direction: column; gap: 1rem;">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Split Grid: Confirmed Sessions & Verified Reviews -->
+        <div class="grid grid-cols-3 gap-6" id="sessions-section">
+          
+          <!-- Column 1 & 2: Scheduled Sprints -->
+          <div class="card" style="grid-column: span 2;">
+            <div class="card-header">
+              <div>
+                <h3 class="text-base font-bold text-slate-900">Confirmed Mentorship Sprints</h3>
+                <p class="text-xs text-muted">Calendar slots confirmed by founders</p>
+              </div>
+              <span class="badge badge-success">Google Meet Ready</span>
+            </div>
+            
+            <div class="card-body flex flex-col gap-3" id="mentor-scheduled-sessions">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Column 3: Founder Reviews & Ratings History -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-base font-bold text-slate-900">Verified Reviews</h3>
+              <span class="text-xs font-bold text-accent-gold">5.0 (12 Reviews)</span>
+            </div>
+            <div class="card-body flex flex-col gap-3" id="mentor-reviews-history">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Propose Available Timeslots Modal (Activity Diagram Page 11: Propose available times) -->
+  <div class="modal-backdrop" id="propose-slots-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-secondary mb-1">Propose Timeslots</span>
+          <h3 class="text-lg font-bold text-slate-900">Propose Meeting Slots to Founder</h3>
+        </div>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('propose-slots-modal')">&times;</button>
+      </div>
+      <form id="propose-slots-form">
+        <input type="hidden" id="propose-req-id">
+        <div class="modal-body">
+          <p class="text-sm text-slate-600 mb-4">
+            Propose 2 to 3 available time slots. The founder will confirm one to automatically schedule the sprint.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label">Available Time Slot 1 <span class="required">*</span></label>
+            <input type="text" id="slot-1" class="form-control" value="Friday, Dec 5 at 3:00 PM CAT" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Available Time Slot 2</label>
+            <input type="text" id="slot-2" class="form-control" value="Monday, Dec 8 at 10:00 AM CAT">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Available Time Slot 3</label>
+            <input type="text" id="slot-3" class="form-control" value="Tuesday, Dec 9 at 4:30 PM CAT">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Pre-meeting Note or Reading</label>
+            <input type="text" id="slot-notes" class="form-control" placeholder="e.g. Please bring your draft BNR sandbox filing">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeModal('propose-slots-modal')">Cancel</button>
+          <button type="submit" class="btn btn-secondary">Send Proposed Slots to Founder &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Decline with Feedback Modal (Activity Diagram Page 11: Record decline and notify founder) -->
+  <div class="modal-backdrop" id="decline-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="text-lg font-bold text-slate-900">Decline Mentorship Request</h3>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('decline-modal')">&times;</button>
+      </div>
+      <form id="decline-form">
+        <input type="hidden" id="decline-req-id">
+        <div class="modal-body">
+          <p class="text-sm text-slate-600 mb-3">
+            Please provide helpful feedback so the founder can revise their request or discover an alternative mentor in Rwanda.
+          </p>
+          <div class="form-group">
+            <label class="form-label">Reason / Guidance for Founder <span class="required">*</span></label>
+            <textarea id="decline-reason" class="form-control" rows="3" placeholder="e.g. Currently at maximum mentee capacity for Q4; recommend reaching out to Claire Mukamana for governance advice." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeModal('decline-modal')">Cancel</button>
+          <button type="submit" class="btn btn-danger">Confirm Decline &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FR 2.2: Edit Mentor Profile Modal -->
+  <div class="modal-backdrop" id="edit-mentor-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-secondary mb-1">Profile Management</span>
+          <h3 class="text-lg font-bold text-slate-900">Edit Mentor Advisory Profile</h3>
+        </div>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('edit-mentor-modal')">&times;</button>
+      </div>
+      <form id="edit-mentor-form">
+        <div class="modal-body">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Full Name <span class="required">*</span></label>
+              <input type="text" id="m-edit-name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address <span class="required">*</span></label>
+              <input type="email" id="m-edit-email" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">Administrative Region <span class="required">*</span></label>
+              <select id="m-edit-region" class="form-control form-select">
+                <option value="Kigali">Kigali</option>
+                <option value="Northern Province">Northern Province</option>
+                <option value="Southern Province">Southern Province</option>
+                <option value="Western Province">Western Province</option>
+                <option value="Eastern Province">Eastern Province</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Monthly Availability</label>
+              <select id="m-edit-avail" class="form-control form-select">
+                <option value="2 hrs/month">2 hours / month</option>
+                <option value="4 hrs/month" selected>4 hours / month</option>
+                <option value="6+ hrs/month">6+ hours / month</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Title & Advisory Affiliation</label>
+            <input type="text" id="m-edit-title" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Primary Expertise Areas (comma-separated)</label>
+            <input type="text" id="m-edit-expertise" class="form-control" placeholder="Product Strategy, FinTech Regulation, BNR Sandbox">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Advisory Bio</label>
+            <textarea id="m-edit-bio" class="form-control" rows="2"></textarea>
+          </div>
+
+          <div class="p-3 mb-2" style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md);">
+            <div class="text-xs font-bold text-slate-700 mb-2">Change Password</div>
+            <div class="grid grid-cols-2 gap-3">
+              <input type="password" id="m-new-pass" class="form-control" placeholder="New Password">
+              <input type="password" id="m-confirm-pass" class="form-control" placeholder="Confirm Password">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeModal('edit-mentor-modal')">Cancel</button>
+          <button type="submit" class="btn btn-secondary">Save Changes &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+  <script>
+    function openEditMentorProfileModal() {
+      const user = window.app.currentUser;
+      const mentor = window.app.getMentorById(user.id);
+      document.getElementById("m-edit-name").value = user.name || "";
+      document.getElementById("m-edit-email").value = user.email || "";
+      document.getElementById("m-edit-region").value = user.region || "Kigali";
+      document.getElementById("m-edit-title").value = user.title || (mentor ? mentor.roleTitle : "");
+      document.getElementById("m-edit-avail").value = (mentor ? mentor.availability : "4 hrs/month");
+      document.getElementById("m-edit-expertise").value = (mentor && mentor.expertise) ? mentor.expertise.join(", ") : "Product Strategy, FinTech Regulation";
+      document.getElementById("m-edit-bio").value = user.bio || (mentor ? mentor.bio : "");
+      window.app.openModal("edit-mentor-modal");
+    }
+
+    function openProposeSlotsModal(reqId) {
+      document.getElementById("propose-req-id").value = reqId;
+      window.app.openModal("propose-slots-modal");
+    }
+
+    function openDeclineModal(reqId) {
+      document.getElementById("decline-req-id").value = reqId;
+      window.app.openModal("decline-modal");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!window.app.requireAuth("mentor")) return;
+      const user = window.app.currentUser;
+      const isDemo = user.id === "mentor-1";
+      const mentor = window.app.getMentorById(user.id);
+
+      if (document.getElementById("sidebar-mentor-avatar")) {
+        document.getElementById("sidebar-mentor-avatar").textContent = user.avatar || "AU";
+      }
+      if (document.getElementById("sidebar-mentor-name")) {
+        document.getElementById("sidebar-mentor-name").textContent = user.name || "Mentor";
+      }
+      if (document.getElementById("mentor-region-badge")) {
+        document.getElementById("mentor-region-badge").textContent = `${user.region || 'Kigali'}`;
+      }
+
+      // Update mentor profile banner
+      const nameEl = document.getElementById("display-mentor-name");
+      const bioEl = document.getElementById("display-mentor-bio");
+      const tagsEl = document.getElementById("display-mentor-tags");
+
+      if (nameEl) nameEl.textContent = user.name || "Mentor";
+      if (bioEl) bioEl.textContent = mentor?.bio || user.title || "Advising Rwandan ventures and founders on acceleration and operational excellence.";
+      if (tagsEl && mentor && mentor.expertise) {
+        tagsEl.innerHTML = mentor.expertise.map(t => `<span class="tag">${t}</span>`).join("");
+      }
+
+      // Sync NFR 7 Real-time Stats
+      const stats = window.app.getLiveStats(user);
+      if (stats) {
+        const hoursEl = document.getElementById("stat-mentor-hours");
+        const teamsEl = document.getElementById("stat-mentor-teams");
+        const capitalEl = document.getElementById("stat-mentor-capital");
+        const pendingEl = document.getElementById("stat-pending-mentorship");
+
+        if (hoursEl) hoursEl.textContent = `${stats.completedHours} Hrs`;
+        if (teamsEl) teamsEl.textContent = `${stats.totalMentees} Teams`;
+        if (capitalEl) capitalEl.textContent = isDemo ? "$2.4M" : "$0";
+        if (pendingEl) pendingEl.textContent = `${stats.pendingMentorshipRequests} Pending`;
+      }
+
+      // 1. Render Incoming Mentorship Requests (SRS Activity Diagram Swimlane)
+      const container = document.getElementById("incoming-mreq-list");
+      function renderMRequests() {
+        if (!container) return;
+        const requests = window.app.state.mentorshipRequests.filter(r => r.mentorId === user.id);
+
+        if (requests.length === 0) {
+          container.innerHTML = `<div class="p-6 text-center text-muted text-sm">No incoming mentorship requests at this time.</div>`;
+          return;
+        }
+
+        container.innerHTML = requests.map(req => {
+          const isPending = req.status === "Pending";
+          const isProposed = req.status === "Timeslots Proposed";
+          let badgeClass = "badge-warning";
+          if (req.status === "Scheduled") badgeClass = "badge-success";
+          if (req.status === "Declined") badgeClass = "badge-danger";
+          if (isProposed) badgeClass = "badge-info";
+
+          return `
+            <div class="card p-4" style="border: 1.5px solid var(--slate-200); background: ${isPending ? 'var(--white)' : 'var(--slate-50)'};">
+              <div class="flex items-start justify-between mb-2 flex-wrap gap-2">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h4 class="text-sm font-bold text-slate-900">${req.founderName}</h4>
+                    <span class="badge badge-primary">${req.startupName}</span>
+                    <span class="badge ${badgeClass}">${req.status}</span>
+                  </div>
+                  <div class="text-xs text-muted mt-1">Submitted on: ${req.submittedAt}</div>
+                </div>
+              </div>
+
+              <div class="p-3 my-2 rounded text-xs text-slate-700" style="background-color: var(--slate-100); border-left: 3px solid var(--secondary);">
+                <strong>Mentorship Goals:</strong> "${req.goals}"
+              </div>
+
+              ${isProposed ? `
+                <div class="text-xs text-slate-600 mb-2">
+                  <strong>Slots Proposed:</strong> ${req.proposedSlots.join(" &bull; ")}
+                  <span class="text-muted">(Awaiting founder confirmation)</span>
+                </div>
+              ` : ''}
+
+              ${req.declineReason ? `
+                <div class="text-xs text-danger mb-2">
+                  <strong>Decline Reason Provided:</strong> ${req.declineReason}
+                </div>
+              ` : ''}
+
+              <div class="flex items-center justify-between mt-2 flex-wrap gap-2">
+                <a href="directory.html?q=${encodeURIComponent(req.startupName)}" class="text-xs font-semibold text-primary">View Startup Profile &rarr;</a>
+                ${isPending ? `
+                  <div class="flex gap-2">
+                    <button class="btn btn-outline btn-sm" onclick="openDeclineModal('${req.id}')">Decline with Feedback</button>
+                    <button class="btn btn-secondary btn-sm" onclick="openProposeSlotsModal('${req.id}')">Propose Available Times</button>
+                  </div>
+                ` : `
+                  <span class="text-xs text-muted">Status: ${req.status}</span>
+                `}
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+      renderMRequests();
+
+      // 2. Render Scheduled Mentorship Sessions
+      const sessionsContainer = document.getElementById("mentor-scheduled-sessions");
+      if (sessionsContainer) {
+        const sessions = window.app.state.mentorshipSessions.filter(s => s.mentorId === user.id);
+        if (sessions.length === 0) {
+          sessionsContainer.innerHTML = `<div class="p-4 text-center text-xs text-muted">No scheduled sessions.</div>`;
+        } else {
+          sessionsContainer.innerHTML = sessions.map(s => `
+            <div class="p-3" style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md);">
+              <div class="flex justify-between items-center mb-1 flex-wrap gap-2">
+                <div class="font-bold text-sm text-slate-900">${s.startupName} (${s.founderName})</div>
+                <span class="badge ${s.status === 'Completed' ? 'badge-success' : 'badge-info'}">${s.status}</span>
+              </div>
+              <div class="text-xs text-muted mb-2">Sprint Slot: <strong>${s.scheduledAt}</strong></div>
+              ${s.outcome ? `<div class="text-xs text-slate-600 bg-white p-2 rounded border border-slate-200"><strong>Notes:</strong> ${s.outcome}</div>` : ''}
+              <div class="flex justify-end gap-2 mt-2">
+                <button class="btn btn-light btn-sm" onclick="alert('Google Meet link launched.');">Open Video Room</button>
+                ${s.status !== 'Completed' ? `
+                  <button class="btn btn-primary btn-sm" onclick="markSessionDone('${s.id}')">Mark Conducted</button>
+                ` : ''}
+              </div>
+            </div>
+          `).join("");
+        }
+      }
+
+      // 3. Render Verified Reviews History
+      const reviewsContainer = document.getElementById("mentor-reviews-history");
+      if (reviewsContainer) {
+        const completedSess = window.app.state.mentorshipSessions.filter(s => s.mentorId === user.id && s.status === "Completed");
+        if (completedSess.length === 0) {
+          reviewsContainer.innerHTML = `<div class="p-4 text-center text-xs text-muted">No reviews recorded yet.</div>`;
+        } else {
+          reviewsContainer.innerHTML = completedSess.map(s => `
+            <div class="p-3" style="background: var(--slate-50); border-radius: var(--radius-md); border-left: 3px solid var(--accent-gold);">
+              <div class="flex justify-between items-center text-xs font-bold text-slate-900 mb-1">
+                <span>${s.founderName}</span>
+                <span class="text-accent-gold">${s.rating}/5</span>
+              </div>
+              <p class="text-xs text-slate-600 italic">"${s.review || 'Excellent advisory session.'}"</p>
+              <div class="text-xs text-muted mt-1">${s.startupName} &bull; ${s.completedAt || 'Nov 2026'}</div>
+            </div>
+          `).join("");
+        }
+      }
+
+      // Propose Slots Form handler
+      const proposeForm = document.getElementById("propose-slots-form");
+      if (proposeForm) {
+        proposeForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const reqId = document.getElementById("propose-req-id").value;
+          const s1 = document.getElementById("slot-1").value;
+          const s2 = document.getElementById("slot-2").value;
+          const s3 = document.getElementById("slot-3").value;
+          const slots = [s1, s2, s3].filter(s => s && s.trim());
+
+          window.app.proposeMentorshipTimeslots(reqId, slots);
+          window.app.closeModal("propose-slots-modal");
+          renderMRequests();
+        });
+      }
+
+      // Decline Form handler
+      const declineForm = document.getElementById("decline-form");
+      if (declineForm) {
+        declineForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const reqId = document.getElementById("decline-req-id").value;
+          const reason = document.getElementById("decline-reason").value;
+
+          window.app.declineMentorshipRequest(reqId, reason);
+          window.app.closeModal("decline-modal");
+          renderMRequests();
+        });
+      }
+
+      // Edit Mentor Profile Form handler
+      const editForm = document.getElementById("edit-mentor-form");
+      if (editForm) {
+        editForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const newPass = document.getElementById("m-new-pass").value;
+          const confirmPass = document.getElementById("m-confirm-pass").value;
+          if (newPass && newPass !== confirmPass) {
+            window.app.showToast("Passwords do not match!", "danger");
+            return;
+          }
+
+          const expertiseArr = document.getElementById("m-edit-expertise").value.split(",").map(x => x.trim()).filter(Boolean);
+          window.app.updateUserProfile({
+            name: document.getElementById("m-edit-name").value,
+            email: document.getElementById("m-edit-email").value,
+            region: document.getElementById("m-edit-region").value,
+            title: document.getElementById("m-edit-title").value,
+            availability: document.getElementById("m-edit-avail").value,
+            expertise: expertiseArr,
+            bio: document.getElementById("m-edit-bio").value
+          });
+
+          window.app.closeModal("edit-mentor-modal");
+          setTimeout(() => window.location.reload(), 400);
+        });
+      }
+    });
+
+    function markSessionDone(sessId) {
+      const sess = window.app.state.mentorshipSessions.find(s => s.id === sessId);
+      if (sess) {
+        sess.status = "Completed";
+        sess.outcome = "Sprint concluded with actionable growth milestones.";
+        window.app.saveState();
+        window.app.showToast("Session marked as conducted!", "success");
+        setTimeout(() => window.location.reload(), 300);
+      }
+    }
+  </script>
+</body>
+</html>

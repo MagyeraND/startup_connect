@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connections Hub | Startup Connect Rwanda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%230a6847'/><text x='50' y='64' font-size='44' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>SC</text></svg>">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- App Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-text">Startup<span>Connect</span></div>
+        </a>
+      </div>
+
+      <div class="sidebar-user-card">
+        <div class="user-avatar" id="sidebar-avatar">JM</div>
+        <div class="user-meta">
+          <div class="user-name" id="sidebar-user-name">Jean-Luc Mugisha</div>
+          <div class="user-role-badge" id="sidebar-role-label">Founder</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Navigation</div>
+        <a href="dashboard-founder.html" id="sidebar-dash-link" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> <span id="sidebar-dash-title">Overview & Pitch</span>
+        </a>
+        <a href="dashboard-founder.html#mentorship-section" id="sidebar-mentorship-link" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg> <span id="sidebar-mentorship-text">Mentorship Sessions</span>
+        </a>
+        <a href="dashboard-founder.html#investment-interests-section" id="sidebar-deals-link" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> <span id="sidebar-deals-text">Investor Interests</span>
+        </a>
+
+        <div class="nav-section-title" id="sidebar-discovery-title">Discovery & Connections</div>
+        <a href="directory.html" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <span id="sidebar-directory-title">Discovery & Matching</span>
+        </a>
+        <a href="connections.html" class="sidebar-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg> <span>Connection Requests</span>
+        </a>
+
+        <div class="nav-section-title">Workflow Actions</div>
+        <a href="#" class="sidebar-item" onclick="openNewRequestModal(); return false;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> New Pitch Request
+        </a>
+
+        <div class="nav-section-title">Account</div>
+        <a href="dashboard-founder.html" id="sidebar-account-link" class="sidebar-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> <span>Edit Profile</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="flex items-center justify-between">
+          <div class="text-xs text-muted">Role: <strong id="sidebar-role-label">User</strong></div>
+          <button onclick="window.app.logout()" class="btn btn-outline btn-sm" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Sign Out</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <header class="app-header">
+        <div class="flex items-center gap-4">
+          <button id="mobile-menu-toggle" class="btn btn-icon btn-light" style="display: none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+          <div class="header-search">
+            <span class="search-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="requests-search-input" placeholder="Search connection requests by name or note...">
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn btn-primary btn-sm" onclick="openNewRequestModal()">
+            <span>+</span> Send New Request
+          </button>
+          <button onclick="window.app.logout()" class="btn btn-outline btn-sm">Sign Out</button>
+        </div>
+      </header>
+
+      <div class="app-content">
+        <!-- Top Title -->
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+          <div>
+            <span class="badge badge-primary mb-1">Connection Requests</span>
+            <h1 class="text-2xl font-extrabold text-slate-900">Connection & Pitch Pipeline</h1>
+            <p class="text-sm text-muted">Track and respond to seed pitch submissions, mentor requests, and direct messaging links.</p>
+          </div>
+          <div class="flex gap-2">
+            <span class="badge badge-success">● End-to-End Status Tracking</span>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="card mb-6">
+          <div class="card-body" style="padding: 1.25rem 1.5rem;">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+              <!-- Direction Tabs -->
+              <div class="nav-tabs" style="margin-bottom: 0; border-bottom: none;">
+                <button class="tab-btn active" data-tab="all">All Requests (<span id="count-all">0</span>)</button>
+                <button class="tab-btn" data-tab="sent">Sent by Me (<span id="count-sent">0</span>)</button>
+                <button class="tab-btn" data-tab="received">Received (<span id="count-received">0</span>)</button>
+                <button class="tab-btn" data-tab="accepted">Active Network (<span id="count-accepted">0</span>)</button>
+              </div>
+
+              <!-- Status Dropdown Filter -->
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-slate-500 uppercase">Status:</span>
+                <select id="status-filter-select" class="form-control form-select" style="padding: 0.35rem 2rem 0.35rem 0.75rem; font-size: 0.8125rem; width: auto;">
+                  <option value="All">All Statuses</option>
+                  <option value="Pending">Pending Only</option>
+                  <option value="Accepted">Accepted Only</option>
+                  <option value="Declined">Declined Only</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Requests Cards & Table Container -->
+        <div class="card">
+          <div class="card-body" style="padding: 0;">
+            <table class="connection-table">
+              <thead>
+                <tr>
+                  <th>Participant</th>
+                  <th>Request Type</th>
+                  <th>Pitch Summary & Notes</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="connections-table-body">
+                <!-- Rendered dynamically via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Send Request Modal -->
+  <div class="modal-backdrop" id="new-req-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="text-lg font-bold text-slate-900">Initiate Connection or Pitch</h3>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('new-req-modal')">&times;</button>
+      </div>
+      <form id="new-connection-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Recipient <span class="required">*</span></label>
+            <select id="new-recipient-select" class="form-control form-select" required>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Request Type <span class="required">*</span></label>
+            <select id="new-type-select" class="form-control form-select">
+              <option value="Seed Pitch & Investment Review">Seed Pitch & Investment Review</option>
+              <option value="Strategic Advisory & Mentorship">Strategic Advisory & Mentorship</option>
+              <option value="Commercial Pilot / Integration">Commercial Pilot / Integration</option>
+              <option value="Ecosystem Networking">Ecosystem Networking</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pitch Message / Proposal Summary <span class="required">*</span></label>
+            <textarea id="new-summary-text" class="form-control" rows="4" placeholder="Describe the purpose, unit economics, or specific guidance you seek..." required></textarea>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Additional Note / Context</label>
+            <input type="text" id="new-note-text" class="form-control" placeholder="e.g. Connected via Kigali Demo Day">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="window.app.closeModal('new-req-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Transmit Request &rarr;</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Direct Messaging Modal (SRS Use Case: Exchange direct messages) -->
+  <div class="modal-backdrop" id="direct-message-modal">
+    <div class="modal-box" style="max-width: 540px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-2">
+          <div class="user-avatar" id="dm-recipient-avatar" style="width: 2rem; height: 2rem; font-size: 0.8rem;">DK</div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900" id="dm-recipient-name">Direct Message</h3>
+            <span class="text-xs text-muted" id="dm-recipient-role">Connected Member</span>
+          </div>
+        </div>
+        <button class="btn btn-icon btn-light" onclick="window.app.closeModal('direct-message-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="chat-container" id="dm-messages-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <form id="dm-send-form" class="flex gap-2 mt-3">
+          <input type="hidden" id="dm-recipient-id">
+          <input type="text" id="dm-input-text" class="form-control" placeholder="Type a direct message..." required autocomplete="off">
+          <button type="submit" class="btn btn-primary btn-sm">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+  <script>
+    let activeTab = "all";
+    let activeStatus = "All";
+
+    function openNewRequestModal() {
+      const select = document.getElementById("new-recipient-select");
+      select.innerHTML = "";
+
+      const options = [
+        ...window.app.state.investors.map(i => ({ id: i.id, name: `${i.name} (${i.firm})`, role: "Investor" })),
+        ...window.app.state.mentors.map(m => ({ id: m.id, name: `${m.name} (Mentor)`, role: "Mentor" })),
+        ...window.app.state.startups.map(s => ({ id: s.founderId, name: `${s.founderName} (${s.name})`, role: "Founder" }))
+      ];
+
+      options.forEach(o => {
+        const opt = document.createElement("option");
+        opt.value = o.id;
+        opt.textContent = `${o.name} - [${o.role}]`;
+        opt.dataset.name = o.name;
+        opt.dataset.role = o.role;
+        select.appendChild(opt);
+      });
+
+      window.app.openModal("new-req-modal");
+    }
+
+    function openDirectMessageModal(recipientId, recipientName, recipientRole) {
+      document.getElementById("dm-recipient-id").value = recipientId;
+      document.getElementById("dm-recipient-name").textContent = recipientName;
+      document.getElementById("dm-recipient-role").textContent = recipientRole;
+      document.getElementById("dm-recipient-avatar").textContent = recipientName.substring(0, 2).toUpperCase();
+
+      renderChatThread(recipientId);
+      window.app.openModal("direct-message-modal");
+    }
+
+    function renderChatThread(recipientId) {
+      const box = document.getElementById("dm-messages-container");
+      const user = window.app.currentUser;
+      const thread = window.app.getDirectMessagesThread(user.id, recipientId);
+
+      if (thread.length === 0) {
+        box.innerHTML = `<div class="p-4 text-center text-xs text-muted">No message history yet with this contact. Say hello!</div>`;
+        return;
+      }
+
+      box.innerHTML = thread.map(m => {
+        const isMine = m.senderId === user.id;
+        return `
+          <div class="chat-bubble ${isMine ? 'sent' : 'received'}">
+            <div>${m.text}</div>
+            <div class="meta">${m.timestamp}</div>
+          </div>
+        `;
+      }).join("");
+
+      box.scrollTop = box.scrollHeight;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!window.app.requireAuth()) return;
+      const user = window.app.currentUser;
+      const avatarEl = document.getElementById("sidebar-avatar");
+      const nameEl = document.getElementById("sidebar-user-name");
+      const roleEl = document.getElementById("sidebar-role-label");
+      const dashLink = document.getElementById("sidebar-dash-link");
+
+      if (avatarEl) avatarEl.textContent = user.avatar || "JM";
+      if (nameEl) nameEl.textContent = user.name;
+      if (roleEl) roleEl.textContent = user.role.toUpperCase();
+      if (dashLink) dashLink.href = `dashboard-${user.role}.html`;
+      window.app.renderSidebarNav("connections");
+
+      const tbody = document.getElementById("connections-table-body");
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      const statusSelect = document.getElementById("status-filter-select");
+      const searchInput = document.getElementById("requests-search-input");
+
+      function renderConnections() {
+        if (!tbody) return;
+        const q = searchInput ? searchInput.value.toLowerCase().trim() : "";
+        const allConns = window.app.state.connections.filter(c => c.senderId === user.id || c.recipientId === user.id);
+
+        const sentCount = allConns.filter(c => c.senderId === user.id).length;
+        const receivedCount = allConns.filter(c => c.recipientId === user.id).length;
+        const acceptedCount = allConns.filter(c => c.status === "Accepted").length;
+
+        document.getElementById("count-all").textContent = allConns.length;
+        document.getElementById("count-sent").textContent = sentCount;
+        document.getElementById("count-received").textContent = receivedCount;
+        document.getElementById("count-accepted").textContent = acceptedCount;
+
+        let filtered = allConns.filter(c => {
+          if (activeTab === "sent") return c.senderId === user.id;
+          if (activeTab === "received") return c.recipientId === user.id;
+          if (activeTab === "accepted") return c.status === "Accepted";
+          return true;
+        });
+
+        if (activeStatus !== "All") {
+          filtered = filtered.filter(c => c.status === activeStatus);
+        }
+
+        if (q) {
+          filtered = filtered.filter(c => 
+            c.senderName.toLowerCase().includes(q) ||
+            c.recipientName.toLowerCase().includes(q) ||
+            c.pitchSummary.toLowerCase().includes(q) ||
+            c.type.toLowerCase().includes(q)
+          );
+        }
+
+        if (filtered.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="6" class="text-center p-8 text-muted">
+                <div style="margin-bottom: 0.5rem; display: flex; justify-content: center; color: var(--slate-400);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></div>
+                <div class="font-bold text-slate-800">${allConns.length === 0 ? 'No connection requests yet' : 'No connection requests match this filter'}</div>
+                <div class="text-xs">${allConns.length === 0 ? 'Start discovering startups, mentors, or investors from the directory to build your network.' : 'Adjust your tab selection or search keyword.'}</div>
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        tbody.innerHTML = filtered.map(c => {
+          let badgeClass = "badge-warning";
+          if (c.status === "Accepted") badgeClass = "badge-success";
+          if (c.status === "Declined") badgeClass = "badge-danger";
+
+          const isOutgoing = c.senderId === user.id;
+          const isPending = c.status === "Pending";
+          const otherId = isOutgoing ? c.recipientId : c.senderId;
+          const otherName = isOutgoing ? c.recipientName : c.senderName;
+          const otherRole = isOutgoing ? c.recipientRole : c.senderRole;
+
+          return `
+            <tr>
+              <td>
+                <div class="flex items-center gap-2">
+                  <div class="font-bold text-slate-900">${otherName}</div>
+                  <span class="badge ${isOutgoing ? 'badge-primary' : 'badge-slate'}" style="font-size: 0.65rem;">
+                    ${isOutgoing ? 'To: ' + c.recipientRole : 'From: ' + c.senderRole}
+                  </span>
+                </div>
+                <div class="text-xs text-muted mt-0.5">${c.notes || 'Network link'}</div>
+              </td>
+              <td>
+                <span class="font-semibold text-xs text-slate-800">${c.type}</span>
+              </td>
+              <td>
+                <p class="text-xs text-slate-600" style="max-width: 320px; line-height: 1.4;">
+                  "${c.pitchSummary}"
+                </p>
+              </td>
+              <td class="text-xs text-muted">${c.dateSent}</td>
+              <td>
+                <span class="badge ${badgeClass}">${c.status}</span>
+              </td>
+              <td style="text-align: right;">
+                ${(!isOutgoing && isPending) ? `
+                  <div class="flex justify-end gap-1">
+                    <button class="btn btn-outline btn-sm" onclick="handleAction('${c.id}', 'Declined')">Decline</button>
+                    <button class="btn btn-primary btn-sm" onclick="handleAction('${c.id}', 'Accepted')">Accept</button>
+                  </div>
+                ` : (c.status === 'Accepted' ? `
+                  <div class="flex justify-end gap-1">
+                    <button class="btn btn-light btn-sm" onclick="openDirectMessageModal('${otherId}', '${otherName.replace(/'/g, "\\'")}', '${otherRole}')">
+                      Message
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="alert('Session scheduling link generated for ${otherName}.');">
+                      Schedule
+                    </button>
+                  </div>
+                ` : `
+                  <span class="text-xs text-muted">${c.status}</span>
+                `)}
+              </td>
+            </tr>
+          `;
+        }).join("");
+      }
+
+      window.handleAction = function(reqId, status) {
+        window.app.updateConnectionStatus(reqId, status);
+        renderConnections();
+      };
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          tabBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          activeTab = btn.dataset.tab;
+          renderConnections();
+        });
+      });
+
+      if (statusSelect) {
+        statusSelect.addEventListener("change", (e) => {
+          activeStatus = e.target.value;
+          renderConnections();
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", () => renderConnections());
+      }
+
+      const form = document.getElementById("new-connection-form");
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const select = document.getElementById("new-recipient-select");
+          const opt = select.options[select.selectedIndex];
+
+          window.app.sendConnectionRequest({
+            recipientId: select.value,
+            recipientName: opt.dataset.name,
+            recipientRole: opt.dataset.role,
+            type: document.getElementById("new-type-select").value,
+            pitchSummary: document.getElementById("new-summary-text").value,
+            notes: document.getElementById("new-note-text").value || "Custom pitch proposal"
+          });
+
+          window.app.closeModal("new-req-modal");
+          renderConnections();
+        });
+      }
+
+      const dmForm = document.getElementById("dm-send-form");
+      if (dmForm) {
+        dmForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const recipientId = document.getElementById("dm-recipient-id").value;
+          const input = document.getElementById("dm-input-text");
+          const text = input.value;
+          if (text) {
+            window.app.sendDirectMessage(recipientId, text);
+            input.value = "";
+            renderChatThread(recipientId);
+          }
+        });
+      }
+
+      renderConnections();
+    });
+  </script>
+</body>
+</html>
