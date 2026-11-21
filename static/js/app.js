@@ -328,6 +328,741 @@ class StartupConnectApp {
       this.saveCurrentUser();
       this.initSavedDeals();
       return user;
+    }
+
+    this.showToast("Account not found. Please verify your email or create an account.", "danger");
+    return null;
+  }
+
+  logout() {
+    this.currentUser = null;
+    if (typeof localStorage !== "undefined") {
+      localStorage.removeItem(this.currentUserKey);
+    }
+    this.initSavedDeals();
+    this.showToast("Signed out successfully.", "info");
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 400);
+  }
+
+  registerUser(newUser) {
+    if (!this.state.registeredUsers) {
+      this.state.registeredUsers = [];
+    }
+
+    if (newUser.role === "founder") {
+      const sName = newUser.startupName || `${newUser.name}'s Venture`;
+      const newStartup = {
+        id: "startup-" + Date.now(),
+        name: sName,
+        sector: newUser.sector || "AgriTech",
+        stage: newUser.stage || "Seed",
+        location: newUser.region || "Kigali",
+        region: newUser.region || "Kigali",
+        capitalSeeking: Number(newUser.capitalSeeking) || 0,
+        monthlyRevenue: 0,
+        youthJobsCreated: 0,
+        teamSize: 1,
+        founderId: newUser.id,
+        founderName: newUser.name,
+        description: newUser.pitchSummary || `${sName} is an emerging Rwandan startup in ${newUser.sector || 'AgriTech'}.`,
+        logo: sName.split(" ").map(w => w[0]).join("").substring(0, 2).toUpperCase()
+      };
+      this.state.startups.unshift(newStartup);
+      newUser.startupId = newStartup.id;
+    } else if (newUser.role === "mentor") {
+      const newMentor = {
+        id: newUser.id,
+        name: newUser.name,
+        roleTitle: newUser.title || "Mentor Advisor",
+        expertise: newUser.expertise || ["Strategy", "Go-To-Market", "Scale"],
+        region: newUser.region || "Kigali",
+        availability: newUser.availability || "4 hrs/month",
+        rating: 5.0,
+        reviewsCount: 0,
+        hoursMentored: 0,
+        bio: newUser.bio || `${newUser.name} is advising Rwandan ventures and founders on acceleration and operational excellence.`
+      };
+      this.state.mentors.unshift(newMentor);
+    } else if (newUser.role === "investor") {
+      const newInvestor = {
+        id: newUser.id,
+        name: newUser.name,
+        firm: newUser.firm || newUser.title || "Angel Investor",
+        region: newUser.region || "Kigali",
+        typicalCheck: newUser.ticket || "$25k - $100k",
+        targetSectors: newUser.sectors || ["AgriTech", "FinTech", "CleanTech"],
+        dealsReviewed: 0,
+        bio: newUser.bio || `Active angel backing high-impact founders in Rwanda.`
+      };
+      this.state.investors.unshift(newInvestor);
+    }
+
+    newUser.isNewAccount = true;
+    this.state.registeredUsers.push(newUser);
+    this.saveState();
+
+    this.currentUser = newUser;
+    this.saveCurrentUser();
+
+    // Ensure clean slate in localStorage for new account
+    if (typeof localStorage !== "undefined") {
+      localStorage.removeItem(`startup_connect_profile_file_${newUser.id}`);
+      localStorage.setItem(`${this.savedDealsKey}_${newUser.id}`, JSON.stringify([]));
+    }
+    this.savedDeals = [];
+
+    return newUser;
+  }
+
+  // FR 2.2: Edit Profile & Password Management
+  updateUserProfile(updatedData) {
+    if (!this.currentUser) return false;
+
+    // Update session
+    Object.assign(this.currentUser, updatedData);
+    this.saveCurrentUser();
+
+    // Sync in demoUsers
+    if (this.state.demoUsers[this.currentUser.role]) {
+      Object.assign(this.state.demoUsers[this.currentUser.role], updatedData);
+    }
+
+    // Sync in domain list if applicable
+    if (this.currentUser.role === "mentor") {
+      const m = this.state.mentors.find(x => x.id === this.currentUser.id);
+      if (m) Object.assign(m, updatedData);
+    } else if (this.currentUser.role === "investor") {
+      const i = this.state.investors.find(x => x.id === this.currentUser.id);
+      if (i) Object.assign(i, updatedData);
+    } else if (this.currentUser.role === "founder" && this.currentUser.startupId) {
+      const s = this.state.startups.find(x => x.id === this.currentUser.startupId);
+      if (s) {
+        if (updatedData.startupName) s.name = updatedData.startupName;
+        if (updatedData.sector) s.sector = updatedData.sector;
+        if (updatedData.region) s.region = updatedData.region;
+        if (updatedData.tagline) s.tagline = updatedData.tagline;
+        if (updatedData.capitalSeeking) s.capitalSeeking = Number(updatedData.capitalSeeking);
+      }
+    }
+
+    this.saveState();
+    this.showToast("Profile details updated successfully!", "success");
+    return true;
+  }
+
+  // Profile File Loading Management
+  // The profile remains empty until a profile file is added (via file upload or project file)
+  getProfileFileData(userId) {
+    if (typeof localStorage === "undefined") return null;
+    const uid = userId || (this.currentUser ? this.currentUser.id : "default");
+    const raw = localStorage.getItem(`startup_connect_profile_file_${uid}`);
+    if (raw) {
+      try {
+        return JSON.parse(raw);
+      } catch (e) {
+        return null;
+      }
+    }
+    // Backward compatibility for demo founder or default guest
+    if (uid === "founder-1" || uid === "default") {
+      const legacy = localStorage.getItem("startup_connect_profile_file_v1");
+      if (legacy) {
+        try { return JSON.parse(legacy); } catch(e) {}
+      }
+    }
+    return null;
+  }
+
+  setProfileFileData(data, userId) {
+    if (typeof localStorage === "undefined") return;
+    const uid = userId || (this.currentUser ? this.currentUser.id : "default");
+    if (!data) {
+      localStorage.removeItem(`startup_connect_profile_file_${uid}`);
+      return;
+    }
+    localStorage.setItem(`startup_connect_profile_file_${uid}`, JSON.stringify(data));
+  }
+
+  clearProfileFileData(userId) {
+    if (typeof localStorage === "undefined") return;
+    const uid = userId || (this.currentUser ? this.currentUser.id : "default");
+    localStorage.removeItem(`startup_connect_profile_file_${uid}`);
+    this.showToast("Profile data cleared. Reverted to empty profile state.", "info");
+  }
+
+  getDefaultSampleProfile() {
+    return {
+      startupName: "Kigali Fresh Logistics",
+      sector: "AgriTech & Cold-Chain",
+      stage: "Seed",
+      region: "Northern Province",
+      location: "Musanze, Northern Province",
+      founderName: "Jean-Luc Mugisha",
+      targetAsk: 150000,
+      monthlyRevenue: 18500,
+      youthJobs: 42,
+      activeConnections: 3,
+      elevatorPitch: "Kigali Fresh deploys IoT-enabled solar cold hubs in Musanze and Rubavu, connecting 1,200+ smallholder horticulture farmers directly to Kigali supermarkets and hotels. We have curtailed post-harvest food waste by 38% while boosting farmer take-home income by 22%.",
+      capitalCommitted: 45000,
+      readinessScore: 92,
+      readinessMilestones: [
+        "Audited Financials",
+        "RDB Registered",
+        "Musanze Cold Leases",
+        "BNR Sandbox Pilot"
+      ],
+      fileName: "profile_data.json"
+    };
+  }
+
+  async checkProjectProfileFile() {
+    const candidateUrls = ["profile_data.json", "/profile_data.json", "static/profile_data.json", "user_profile.json"];
+    for (const url of candidateUrls) {
+      try {
+        const res = await fetch(url);
+        if (res.ok) {
+          const json = await res.json();
+          if (json && (json.startupName || json.targetAsk || json.elevatorPitch)) {
+            json.fileName = json.fileName || url.split("/").pop();
+            this.setProfileFileData(json);
+            return json;
+          }
+        }
+      } catch (e) {
+        // file protocol or network error
+      }
+    }
+    return null;
+  }
+
+  handleProfileFileUpload(file, callback) {
+    if (!file) return;
+    const fileName = file.name;
+    const isJson = fileName.toLowerCase().endsWith(".json");
+
+    if (isJson) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          parsed.fileName = fileName;
+          const sample = this.getDefaultSampleProfile();
+          const complete = Object.assign({}, sample, parsed);
+          this.setProfileFileData(complete);
+          this.showToast(`Loaded profile data from ${fileName}!`, "success");
+          if (callback) callback(complete);
+        } catch (err) {
+          this.showToast(`Invalid JSON file format in ${fileName}`, "danger");
+        }
+      };
+      reader.readAsText(file);
+    } else {
+      const data = this.getDefaultSampleProfile();
+      data.fileName = fileName;
+      if (fileName.toLowerCase().includes("deck") || fileName.toLowerCase().includes("pitch") || fileName.toLowerCase().endsWith(".pdf")) {
+        data.elevatorPitch = `Verified document (${fileName}) parsed: ` + data.elevatorPitch;
+      }
+      this.setProfileFileData(data);
+      this.showToast(`Profile activated from document: ${fileName}!`, "success");
+      if (callback) callback(data);
+    }
+  }
+
+  // FR 4: Connection Management
+  sendConnectionRequest(data) {
+    const newReq = {
+      id: "req-" + Date.now(),
+      senderId: this.currentUser.id,
+      senderName: this.currentUser.name + (this.currentUser.startupId ? ` (${this.getStartupById(this.currentUser.startupId)?.name || 'Founder'})` : ''),
+      senderRole: this.currentUser.role.charAt(0).toUpperCase() + this.currentUser.role.slice(1),
+      recipientId: data.recipientId,
+      recipientName: data.recipientName,
+      recipientRole: data.recipientRole,
+      type: data.type || "Networking & Collaboration",
+      pitchSummary: data.pitchSummary || "Eager to connect and discuss ecosystem synergy.",
+      status: "Pending",
+      dateSent: new Date().toISOString().split("T")[0],
+      notes: data.notes || "Sent via Startup Connect Rwanda network."
+    };
+
+    this.state.connections.unshift(newReq);
+    this.saveState();
+    this.showToast(`Connection request sent to ${data.recipientName}!`, "success");
+    return newReq;
+  }
+
+  updateConnectionStatus(reqId, newStatus) {
+    const req = this.state.connections.find(c => c.id === reqId);
+    if (req) {
+      req.status = newStatus;
+      this.saveState();
+      this.showToast(`Connection request marked as ${newStatus}!`, newStatus === "Accepted" ? "success" : "warning");
+      return true;
+    }
+    return false;
+  }
+
+  // =========================================================================
+  // SRS Activity Workflow: Mentorship Request -> Schedule -> Review (Page 11)
+  // =========================================================================
+
+  submitMentorshipRequest(data) {
+    const mentor = this.getMentorById(data.mentorId);
+    const newMReq = {
+      id: "mreq-" + Date.now(),
+      founderId: this.currentUser.id,
+      founderName: this.currentUser.name,
+      startupName: this.currentUser.startupId ? (this.getStartupById(this.currentUser.startupId)?.name || "Founder Venture") : "Founder Venture",
+      mentorId: data.mentorId,
+      mentorName: mentor ? mentor.name : data.mentorName,
+      goals: data.goals || "Strategic guidance on product roadmap, unit economics, and regulatory compliance in Rwanda.",
+      status: "Pending",
+      submittedAt: new Date().toISOString().split("T")[0],
+      declineReason: null,
+      proposedSlots: []
+    };
+
+    this.state.mentorshipRequests.unshift(newMReq);
+    this.saveState();
+    this.showToast(`Mentorship request submitted to ${newMReq.mentorName}!`, "success");
+    return newMReq;
+  }
+
+  proposeMentorshipTimeslots(requestId, slotsArray) {
+    const req = this.state.mentorshipRequests.find(r => r.id === requestId);
+    if (req) {
+      req.status = "Timeslots Proposed";
+      req.proposedSlots = slotsArray;
+      this.saveState();
+      this.showToast(`Available timeslots sent to founder ${req.founderName}!`, "success");
+      return true;
+    }
+    return false;
+  }
+
+  declineMentorshipRequest(requestId, reason) {
+    const req = this.state.mentorshipRequests.find(r => r.id === requestId);
+    if (req) {
+      req.status = "Declined";
+      req.declineReason = reason || "Mentor availability capacity reached for this cycle.";
+      this.saveState();
+      this.showToast(`Mentorship request declined with feedback for founder.`, "warning");
+      return true;
+    }
+    return false;
+  }
+
+  confirmMentorshipSlot(requestId, selectedSlot) {
+    const req = this.state.mentorshipRequests.find(r => r.id === requestId);
+    if (req) {
+      req.status = "Scheduled";
+      
+      const newSession = {
+        id: "sess-" + Date.now(),
+        requestId: req.id,
+        founderId: req.founderId,
+        founderName: req.founderName,
+        startupName: req.startupName,
+        mentorId: req.mentorId,
+        mentorName: req.mentorName,
+        scheduledAt: selectedSlot,
+        status: "Scheduled",
+        outcome: "Awaiting session completion",
+        rating: null,
+        review: null,
+        completedAt: null
+      };
+
+      this.state.mentorshipSessions.unshift(newSession);
+      this.saveState();
+      this.showToast(`Mentorship session scheduled for ${selectedSlot}!`, "success");
+      return newSession;
+    }
+    return null;
+  }
+
+  reviseMentorshipRequest(requestId, updatedGoals, newMentorId = null) {
+    const req = this.state.mentorshipRequests.find(r => r.id === requestId);
+    if (req) {
+      if (newMentorId && newMentorId !== req.mentorId) {
+        const newMentor = this.getMentorById(newMentorId);
+        if (newMentor) {
+          req.mentorId = newMentor.id;
+          req.mentorName = newMentor.name;
+        }
+      }
+      req.goals = updatedGoals || req.goals;
+      req.status = "Pending";
+      req.declineReason = null;
+      req.proposedSlots = [];
+      req.submittedAt = new Date().toISOString().split("T")[0];
+      this.saveState();
+      this.showToast(`Mentorship request revised and re-submitted to ${req.mentorName}!`, "success");
+      return true;
+    }
+    return false;
+  }
+
+  completeMentorshipSession(sessionId, outcome, rating, reviewText) {
+    const sess = this.state.mentorshipSessions.find(s => s.id === sessionId);
+    if (sess) {
+      sess.status = "Completed";
+      sess.outcome = outcome || "Mentorship discussion concluded with actionable milestones.";
+      sess.rating = Number(rating) || 5;
+      sess.review = reviewText || "Helpful and strategic guidance.";
+      sess.completedAt = new Date().toISOString().split("T")[0];
+
+      // Update mentor's review counter & compute dynamic rating
+      const mentor = this.state.mentors.find(m => m.id === sess.mentorId);
+      if (mentor) {
+        mentor.totalReviews = (mentor.totalReviews || 0) + 1;
+        mentor.hoursMentored = (mentor.hoursMentored || 0) + 1;
+        
+        // Dynamic average rating
+        const allMentorSessions = this.state.mentorshipSessions.filter(s => s.mentorId === mentor.id && s.rating);
+        if (allMentorSessions.length > 0) {
+          const sumRatings = allMentorSessions.reduce((acc, curr) => acc + curr.rating, 0);
+          mentor.rating = parseFloat((sumRatings / allMentorSessions.length).toFixed(1));
+        }
+      }
+
+      this.saveState();
+      this.showToast("Session feedback and rating saved permanently!", "success");
+      return true;
+    }
+    return false;
+  }
+
+  // =========================================================================
+  // SRS Investment Interest Workflow (Class Diagram Page 12, 13)
+  // =========================================================================
+
+  expressInvestmentInterest(data) {
+    const startup = this.getStartupById(data.startupId);
+    const newInterest = {
+      id: "interest-" + Date.now(),
+      investorId: this.currentUser.id,
+      investorName: this.currentUser.name,
+      firm: this.currentUser.title || "Angel Syndicate",
+      startupId: data.startupId,
+      startupName: startup ? startup.name : "Rwandan Venture",
+      founderId: startup ? startup.founderId : null,
+      founderName: startup ? startup.founderName : "Founder",
+      amount: Number(data.amount) || 25000,
+      note: data.note || "Interested in reviewing metrics and evaluating term sheet.",
+      status: "Expressed", // Expressed, In Due Diligence, Term Sheet Offered, Completed, Passed
+      dateSubmitted: new Date().toISOString().split("T")[0]
+    };
+
+    this.state.investmentInterests.unshift(newInterest);
+    this.saveState();
+    this.showToast(`Investment interest of $${newInterest.amount.toLocaleString()} expressed to ${newInterest.startupName}!`, "success");
+    return newInterest;
+  }
+
+  updateInvestmentInterestStatus(interestId, newStatus) {
+    const item = this.state.investmentInterests.find(i => i.id === interestId);
+    if (item) {
+      item.status = newStatus;
+      this.saveState();
+      this.showToast(`Investment status updated to "${newStatus}"!`, "success");
+      return true;
+    }
+    return false;
+  }
+
+  // =========================================================================
+  // SRS Direct Messaging (Page 9 Use Case: Exchange direct messages)
+  // =========================================================================
+
+  sendDirectMessage(recipientId, text) {
+    if (!text || !text.trim()) return;
+
+    const newMsg = {
+      id: "msg-" + Date.now(),
+      senderId: this.currentUser.id,
+      senderName: this.currentUser.name,
+      recipientId: recipientId,
+      text: text.trim(),
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    if (!this.state.directMessages) this.state.directMessages = [];
+    this.state.directMessages.push(newMsg);
+    this.saveState();
+    return newMsg;
+  }
+
+  getDirectMessagesThread(userId1, userId2) {
+    if (!this.state.directMessages) return [];
+    return this.state.directMessages.filter(m => 
+      (m.senderId === userId1 && m.recipientId === userId2) ||
+      (m.senderId === userId2 && m.recipientId === userId1)
+    );
+  }
+
+  // =========================================================================
+  // Deal Watchlist (Investors)
+  // =========================================================================
+
+  initSavedDeals() {
+    if (typeof localStorage === "undefined") {
+      this.savedDeals = ["startup-1", "startup-3"];
+      return;
+    }
+    const userId = this.currentUser ? this.currentUser.id : "default";
+    const saved = localStorage.getItem(`${this.savedDealsKey}_${userId}`);
+    if (saved) {
+      try {
+        this.savedDeals = JSON.parse(saved);
+        return;
+      } catch (e) {}
+    }
+    // Only default demo investor starts with saved deals
+    if (userId === "investor-1" || userId === "default") {
+      this.savedDeals = ["startup-1", "startup-3"];
+    } else {
+      this.savedDeals = [];
+    }
+  }
+
+  toggleSaveDeal(startupId) {
+    const userId = this.currentUser ? this.currentUser.id : "default";
+    if (!Array.isArray(this.savedDeals)) this.savedDeals = [];
+    const idx = this.savedDeals.indexOf(startupId);
+    let isSaved = false;
+    if (idx > -1) {
+      this.savedDeals.splice(idx, 1);
+      this.showToast("Removed startup from watchlist", "warning");
+    } else {
+      this.savedDeals.push(startupId);
+      isSaved = true;
+      this.showToast("Startup bookmarked to your watchlist!", "success");
+    }
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem(`${this.savedDealsKey}_${userId}`, JSON.stringify(this.savedDeals));
+    }
+    return isSaved;
+  }
+
+  isDealSaved(startupId) {
+    return Array.isArray(this.savedDeals) && this.savedDeals.includes(startupId);
+  }
+
+  // =========================================================================
+  // NFR 7: Live Real-Time Dashboard Statistics
+  // =========================================================================
+
+  getLiveStats(user) {
+    if (!user) return null;
+    const conns = this.state.connections || [];
+    const mreqs = this.state.mentorshipRequests || [];
+    const sess = this.state.mentorshipSessions || [];
+    const interests = this.state.investmentInterests || [];
+
+    if (user.role === "founder") {
+      const isDemo = user.id === "founder-1";
+      const userConns = conns.filter(c => (c.senderId === user.id || c.recipientId === user.id) && c.status === "Accepted");
+      const userMreqs = mreqs.filter(r => r.founderId === user.id);
+      const userSess = sess.filter(s => s.founderId === user.id && s.status === "Completed");
+      const userInterests = interests.filter(i => i.founderId === user.id);
+
+      return {
+        totalConnections: userConns.length + (isDemo && userConns.length === 0 ? 3 : 0),
+        pendingRequests: conns.filter(c => c.senderId === user.id && c.status === "Pending").length,
+        activeMentorships: userMreqs.filter(r => r.status === "Scheduled" || r.status === "Timeslots Proposed").length,
+        completedSessions: userSess.length,
+        expressedCapital: userInterests.reduce((sum, i) => sum + (Number(i.amount) || 0), 0)
+      };
+    } else if (user.role === "mentor") {
+      const isDemo = user.id === "mentor-1";
+      const userConns = conns.filter(c => (c.senderId === user.id || c.recipientId === user.id) && c.status === "Accepted");
+      const userMreqs = mreqs.filter(r => r.mentorId === user.id && r.status === "Pending");
+      const userSess = sess.filter(s => s.mentorId === user.id && s.status === "Scheduled");
+      const mentorObj = this.getMentorById(user.id);
+
+      return {
+        totalMentees: userConns.length + (isDemo && userConns.length === 0 ? 6 : 0),
+        pendingMentorshipRequests: userMreqs.length + (isDemo && userMreqs.length === 0 ? 2 : 0),
+        scheduledSessions: userSess.length + (isDemo && userSess.length === 0 ? 1 : 0),
+        completedHours: isDemo ? (mentorObj?.hoursMentored || 140) : (mentorObj?.hoursMentored || 0)
+      };
+    } else if (user.role === "investor") {
+      const isDemo = user.id === "investor-1";
+      const userInterests = interests.filter(i => i.investorId === user.id);
+      const savedCount = (this.savedDeals || []).length;
+
+      return {
+        dealsReviewed: isDemo ? 160 : savedCount,
+        activeInterestsCount: userInterests.length,
+        inDueDiligence: userInterests.filter(i => i.status === "In Due Diligence").length + (isDemo ? 4 : 0),
+        capitalCommitted: userInterests.reduce((sum, i) => sum + (Number(i.amount) || 0), 0)
+      };
+    }
+  }
+
+  // Lookups
+  getStartupById(id) {
+    return this.state.startups.find(s => s.id === id);
+  }
+
+  getMentorById(id) {
+    return this.state.mentors.find(m => m.id === id);
+  }
+
+  getInvestorById(id) {
+    return this.state.investors.find(i => i.id === id);
+  }
+
+  // Toast System
+  showToast(message, type = "info") {
+    let container = document.getElementById("toast-container");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "toast-container";
+      container.className = "toast-container";
+      document.body.appendChild(container);
+    }
+
+    const toast = document.createElement("div");
+    toast.className = `toast toast-${type}`;
+
+    let icon = "&bull;";
+    if (type === "success") icon = "&bull;";
+    if (type === "warning") icon = "&bull;";
+    if (type === "danger") icon = "&bull;";
+
+    toast.innerHTML = `<span>${icon}</span> <div>${message}</div>`;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateY(10px)";
+      toast.style.transition = "all 0.3s ease";
+      setTimeout(() => toast.remove(), 300);
+    }, 3800);
+  }
+
+  // Modals
+  openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  }
+
+  toggleSidebar() {
+    const sidebar = document.querySelector(".app-sidebar");
+    if (sidebar) {
+      sidebar.classList.toggle("open");
+    }
+  }
+
+  // Platform Welcome & Onboarding Guide
+  openWelcomeGuide() {
+    let guide = document.getElementById("welcome-guide-modal");
+    if (!guide) {
+      guide = document.createElement("div");
+      guide.id = "welcome-guide-modal";
+      guide.className = "modal-backdrop";
+      guide.innerHTML = `
+        <div class="modal-box" style="max-width: 720px; padding: 0; border-radius: var(--radius-xl); overflow: hidden;">
+          <div class="modal-header" style="padding: 1.75rem 2.25rem 1.25rem; border-bottom: 1px solid var(--slate-100);">
+            <div>
+              <span class="badge badge-primary mb-2">Platform Overview</span>
+              <h3 class="text-xl font-extrabold text-slate-900">Welcome to Startup Connect Rwanda</h3>
+            </div>
+            <button class="btn btn-icon btn-light" onclick="window.app.closeModal('welcome-guide-modal')">&times;</button>
+          </div>
+          <div class="modal-body" style="padding: 2rem 2.25rem;">
+            <p class="text-sm text-slate-600 mb-6 leading-relaxed" style="font-size: 0.9375rem; line-height: 1.65;">
+              Startup Connect is Rwanda's dedicated digital platform bridging early-stage startups, industry mentors, and investors across Kigali and all 4 provinces (Northern, Southern, Western, and Eastern).
+            </p>
+            
+            <div class="grid grid-cols-3 gap-5 mb-6">
+              <div class="p-4 flex flex-col justify-between" style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); min-height: 170px;">
+                <div>
+                  <div class="font-bold text-sm text-primary mb-2">For Founders</div>
+                  <div class="text-xs text-slate-600 leading-relaxed" style="line-height: 1.6;">
+                    Publish your startup pitch, submit structured mentorship goals, schedule review sessions, and track incoming investor expressions.
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 flex flex-col justify-between" style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); min-height: 170px;">
+                <div>
+                  <div class="font-bold text-sm text-secondary mb-2">For Mentors</div>
+                  <div class="text-xs text-slate-600 leading-relaxed" style="line-height: 1.6;">
+                    Review founder applications, propose available meeting time slots, conduct sprints, and build a verified advisory track record.
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 flex flex-col justify-between" style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); min-height: 170px;">
+                <div>
+                  <div class="font-bold text-sm text-slate-900 mb-2">For Investors</div>
+                  <div class="text-xs text-slate-600 leading-relaxed" style="line-height: 1.6;">
+                    Filter vetted ventures by East African sector &amp; Rwandan region, review data room metrics, express check interest, and syndicate deals.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 text-xs text-slate-700" style="background: #f8fafc; border: 1px solid var(--slate-200); border-left: 4px solid var(--primary); border-radius: var(--radius-md); line-height: 1.65;">
+              <strong class="text-slate-900 font-bold">Pro Tip:</strong> Use the directory search to discover verified mentors and investors across Rwanda, filter by sector and province, and manage all your partnership requests in the Connections Hub.
+            </div>
+          </div>
+          <div class="modal-footer" style="padding: 1.25rem 2.25rem; border-top: 1px solid var(--slate-100); background: var(--slate-50);">
+            <button class="btn btn-primary btn-block" style="padding: 0.75rem 1.5rem;" onclick="window.app.closeModal('welcome-guide-modal')">Got it! Explore Platform</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(guide);
+      guide.addEventListener("click", (e) => {
+        if (e.target === guide) window.app.closeModal("welcome-guide-modal");
+      });
+    }
+    this.openModal("welcome-guide-modal");
+  }
 }
 
+// Global App Instance
 window.app = new StartupConnectApp();
+
+function formatRwf(amount) {
+  return "$" + Number(amount).toLocaleString();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Sync sidebar info for current user
+  if (window.app) {
+    window.app.updateSidebarUserInfo();
+  }
+
+  // Mobile drawer
+  const mobileToggle = document.getElementById("mobile-menu-toggle");
+  if (mobileToggle) {
+    mobileToggle.addEventListener("click", () => window.app.toggleSidebar());
+  }
+
+  // Close modals on backdrop click
+  document.querySelectorAll(".modal-backdrop").forEach(backdrop => {
+    backdrop.addEventListener("click", (e) => {
+      if (e.target === backdrop) {
+        backdrop.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    });
+  });
+});
