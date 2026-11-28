@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-"""
-Startup Connect Rwanda - Static Server Launcher
-Serves the client-side single-page interface and static assets using Python's built-in HTTP server.
-"""
 
 import http.server
 import socketserver
