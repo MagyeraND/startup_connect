@@ -1,21 +1,4 @@
-"""
-Startup Connect Rwanda - Backend Architecture
-Aligned with SRS (Software Requirements Specification) by David Nkubito
-African Leadership University (ALU) - 27 September 2026
 
-Architecture (SRS Component Diagram Page 14-15):
-- Web Application & API Gateway (HTTP/JSON routing & validation)
-- Domain Services:
-  * User & Profile Service (FR 1.1, FR 1.2, FR 2.1, FR 2.2)
-  * Discovery & Matching Service (FR 3.1 Industry & Regional Filtering, FR 3.2 Name Substring Search)
-  * Mentorship Service (SRS Activity Diagram Swimlanes: Request, Decline/Revise Loop, Propose Slots, Confirm, Review & Rate)
-  * Investment Service (SRS Class Diagram: Express Interest, Due Diligence & Term Sheet Tracking)
-  * Direct Messaging & Notification Service (SRS Use Case: Direct Message Exchange & System Alerts)
-- Relational Database (Normalized schema with MySQL target & SQLite local development fallback)
-- NFR 1 Security: PBKDF2/SHA-256 password hashing via Werkzeug Security
-- NFR 4 Reliability: Cascade constraints preventing orphan records
-- NFR 7 Technology: Real-time connection and session statistics
-"""
 
 import os
 import json
@@ -26,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "startup-connect-rwanda-srs-secret-key-2026")
 
-# Database Configuration (MySQL target with SQLite local fallback)
+
 MYSQL_USER = os.environ.get("DB_USER", "root")
 MYSQL_PASS = os.environ.get("DB_PASSWORD", "")
 MYSQL_HOST = os.environ.get("DB_HOST", "localhost")
@@ -36,9 +19,7 @@ MYSQL_URI = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASS}@{MYSQL_HOST}/{MYSQL_DB}"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///startup_connect.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# ==============================================================================
-# Domain Models (SRS Class Diagram & Appendix B Entity-Relationship Mapping)
-# ==============================================================================
+
 
 try:
     from flask_sqlalchemy import SQLAlchemy
@@ -82,8 +63,8 @@ try:
         id = db.Column(db.Integer, primary_key=True)
         founder_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
         name = db.Column(db.String(150), nullable=False)
-        sector = db.Column(db.String(50), nullable=False)  # AgriTech, FinTech, GreenTech, etc.
-        stage = db.Column(db.String(50), nullable=False)   # Idea, Pre-seed, Seed, Series A
+        sector = db.Column(db.String(50), nullable=False) 
+        stage = db.Column(db.String(50), nullable=False)   
         region = db.Column(db.String(50), default="Kigali")
         location = db.Column(db.String(100), default="Kigali, Rwanda")
         tagline = db.Column(db.String(255))
@@ -96,7 +77,7 @@ try:
         website = db.Column(db.String(255))
         created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-        # NFR 4: Cascade constraints for investment interests
+
         investment_interests = db.relationship("InvestmentInterest", backref="startup", lazy=True, cascade="all, delete-orphan")
 
         def to_dict(self):
@@ -145,9 +126,9 @@ try:
         founder_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
         mentor_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
         goals = db.Column(db.Text, nullable=False)
-        status = db.Column(db.String(30), default="Pending")  # Pending, Declined, Timeslots Proposed, Scheduled
+        status = db.Column(db.String(30), default="Pending")  
         decline_reason = db.Column(db.Text)
-        proposed_slots_json = db.Column(db.Text) # JSON string of slot choices
+        proposed_slots_json = db.Column(db.Text) 
         created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
         sessions = db.relationship("MentorshipSession", backref="mentorship_request", lazy=True, cascade="all, delete-orphan")
@@ -232,9 +213,7 @@ try:
 except ImportError:
     db = None
 
-# ==============================================================================
-# Page Routes (Jinja2 Templates Synchronized with Root HTML Files)
-# ==============================================================================
+
 
 @app.route("/")
 def index():
@@ -297,7 +276,7 @@ def get_profile_data_file():
     return jsonify({"error": "Profile data file not present in project", "loaded": False}), 404
 
 # ==============================================================================
-# REST API Endpoints (Component Diagram: Domain Services Layer)
+# REST API Endpoints 
 # ==============================================================================
 
 @app.route("/api/health")
@@ -309,7 +288,7 @@ def api_health():
         "timestamp": datetime.utcnow().isoformat()
     })
 
-# --- Service 1: User & Profile Service (FR 1.1, FR 1.2, FR 2.1, FR 2.2) ---
+
 
 @app.route("/api/auth/register", methods=["POST"])
 def api_register():
@@ -377,7 +356,7 @@ def api_user_profile():
 
     return jsonify({"success": True, "user": user.to_dict()})
 
-# --- Service 2: Discovery Service (FR 3.1 & FR 3.2) ---
+
 
 @app.route("/api/discovery", methods=["GET"])
 def api_discovery():
@@ -404,7 +383,7 @@ def api_discovery():
     startups = [s.to_dict() for s in query.all()]
     return jsonify({"count": len(startups), "startups": startups})
 
-# --- Service 3: Connection Management Service (FR 4.1 & FR 4.2) ---
+
 
 @app.route("/api/connections", methods=["GET", "POST", "PUT"])
 def api_connections():
@@ -441,7 +420,6 @@ def api_connections():
     ).all()
     return jsonify({"count": len(conns), "connections": [c.to_dict() for c in conns]})
 
-# --- Service 4: Mentorship Service (SRS Activity Diagram Swimlanes Page 11) ---
 
 @app.route("/api/mentorship/request", methods=["POST"])
 def api_mentorship_request():
@@ -548,7 +526,7 @@ def api_session_review():
         return jsonify({"success": True, "session": sess.to_dict()})
     return jsonify({"success": False, "error": "Session not found"}), 404
 
-# --- Service 5: Investment Service (SRS Class Diagram Page 12, 13) ---
+
 
 @app.route("/api/investment/express", methods=["POST"])
 def api_express_investment():
@@ -582,7 +560,6 @@ def api_investment_status():
         return jsonify({"success": True, "interest": interest.to_dict()})
     return jsonify({"success": False, "error": "Interest record not found"}), 404
 
-# --- Service 6: Direct Messaging & Notifications (SRS Use Case Page 9) ---
 
 @app.route("/api/messages/send", methods=["POST"])
 def api_send_message():
@@ -613,7 +590,7 @@ def api_get_thread():
 
     return jsonify({"messages": [m.to_dict() for m in msgs]})
 
-# --- NFR 7: Real-time Statistics ---
+
 
 @app.route("/api/stats", methods=["GET"])
 def api_stats():
